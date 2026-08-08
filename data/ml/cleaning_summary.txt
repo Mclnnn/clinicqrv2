@@ -1,0 +1,41 @@
+Clinic logbook cleaning summary
+================================
+
+Source: C:\Users\User\Downloads\clinic_logbook_school_aware_FINAL_COMPLETE_VERIFIED.xlsx
+Clean rows exported: 8868
+
+Rows used by sheet:
+- Completed_2023: 1649
+- Completed_2024: 1386
+- Completed_2025: 1713
+- Completed_2026: 4120
+
+Rows skipped because date was missing/unreadable:
+
+Top complaint categories:
+- Unknown: 1435
+- Respiratory: 1149
+- Enrollment/Requirement: 948
+- Other: 811
+- Headache: 713
+- Gastrointestinal: 573
+- Body Pain: 532
+- Check-up/Consultation: 431
+- Allergy: 384
+- Fever: 317
+- Dental: 299
+- Wound/Injury: 279
+- Medical Certificate: 234
+- Dizziness: 222
+- Blood Pressure: 211
+- Dysmenorrhea: 185
+- Supply/Medicine Issuance: 83
+- Physical Assessment: 60
+- Eye/Ear Concern: 1
+- Laboratory: 1
+
+Generated files:
+- data\ml\clinic_logbook_clean_for_ml.csv
+- data\ml\monthly_health_trends.csv
+- data\ml\complaint_category_mapping_used.csv
+- data\ml\future_date_trace.csv

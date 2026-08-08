@@ -1,0 +1,20 @@
+Health trend model metrics
+==========================
+
+Selected forecast method: RandomForestRegressor
+Model: RandomForestRegressor
+Training rows: 363
+Testing rows: 88
+Month range: 2023-01 to 2026-07
+Validation period: 2025-11 to 2026-06
+Prediction month: 2026-08
+
+MAE: 18.4546
+RMSE: 27.7826
+R2: -0.0717
+
+Validation method: Most recent months held out chronologically.
+ML selection rule: Lowest MAE, then lowest RMSE, across the evaluated ML models.
+Baselines are retained in model_comparison.csv for accuracy benchmarking.
+Note: This forecast predicts monthly case counts for decision support only.
+The clinic head remains the final decision-maker.

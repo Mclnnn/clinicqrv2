@@ -1,0 +1,419 @@
+﻿month_key,complaint_category,case_count
+2023-01,Allergy,7
+2023-01,Blood Pressure,2
+2023-01,Body Pain,8
+2023-01,Dental,2
+2023-01,Dizziness,4
+2023-01,Dysmenorrhea,5
+2023-01,Fever,1
+2023-01,Gastrointestinal,10
+2023-01,Headache,3
+2023-01,Respiratory,12
+2023-01,Wound/Injury,4
+2023-02,Allergy,4
+2023-02,Body Pain,7
+2023-02,Dental,3
+2023-02,Dizziness,5
+2023-02,Dysmenorrhea,1
+2023-02,Fever,6
+2023-02,Gastrointestinal,6
+2023-02,Headache,4
+2023-02,Respiratory,19
+2023-02,Wound/Injury,2
+2023-03,Allergy,5
+2023-03,Blood Pressure,2
+2023-03,Body Pain,11
+2023-03,Dental,5
+2023-03,Dizziness,9
+2023-03,Dysmenorrhea,4
+2023-03,Fever,4
+2023-03,Gastrointestinal,6
+2023-03,Headache,6
+2023-03,Respiratory,13
+2023-03,Wound/Injury,1
+2023-04,Allergy,2
+2023-04,Blood Pressure,1
+2023-04,Body Pain,4
+2023-04,Dental,2
+2023-04,Dizziness,3
+2023-04,Dysmenorrhea,2
+2023-04,Fever,4
+2023-04,Gastrointestinal,4
+2023-04,Headache,4
+2023-04,Respiratory,10
+2023-04,Wound/Injury,4
+2023-05,Allergy,2
+2023-05,Blood Pressure,1
+2023-05,Body Pain,7
+2023-05,Dental,2
+2023-05,Dizziness,6
+2023-05,Dysmenorrhea,4
+2023-05,Fever,2
+2023-05,Gastrointestinal,4
+2023-05,Headache,9
+2023-05,Respiratory,5
+2023-05,Wound/Injury,4
+2023-06,Allergy,6
+2023-06,Blood Pressure,3
+2023-06,Body Pain,4
+2023-06,Dental,2
+2023-06,Dizziness,1
+2023-06,Fever,5
+2023-06,Gastrointestinal,4
+2023-06,Respiratory,15
+2023-06,Wound/Injury,1
+2023-07,Allergy,12
+2023-07,Blood Pressure,4
+2023-07,Body Pain,25
+2023-07,Dental,13
+2023-07,Dizziness,4
+2023-07,Dysmenorrhea,3
+2023-07,Fever,15
+2023-07,Gastrointestinal,16
+2023-07,Headache,75
+2023-07,Respiratory,44
+2023-07,Wound/Injury,11
+2023-08,Allergy,1
+2023-08,Dental,1
+2023-08,Fever,1
+2023-08,Headache,1
+2023-08,Respiratory,5
+2023-08,Wound/Injury,2
+2023-09,Dental,1
+2023-09,Fever,3
+2023-09,Gastrointestinal,2
+2023-09,Respiratory,7
+2023-09,Wound/Injury,1
+2023-10,Respiratory,1
+2023-11,Allergy,2
+2023-11,Blood Pressure,1
+2023-11,Body Pain,2
+2023-11,Dizziness,3
+2023-11,Dysmenorrhea,1
+2023-11,Fever,11
+2023-11,Gastrointestinal,5
+2023-11,Headache,4
+2023-11,Respiratory,15
+2023-11,Wound/Injury,2
+2023-12,Allergy,1
+2023-12,Blood Pressure,2
+2023-12,Body Pain,3
+2023-12,Dental,3
+2023-12,Dysmenorrhea,3
+2023-12,Fever,1
+2023-12,Gastrointestinal,4
+2023-12,Headache,1
+2023-12,Respiratory,11
+2023-12,Wound/Injury,3
+2024-01,Blood Pressure,1
+2024-01,Fever,2
+2024-01,Gastrointestinal,1
+2024-01,Headache,1
+2024-01,Respiratory,4
+2024-03,Allergy,6
+2024-03,Blood Pressure,2
+2024-03,Body Pain,15
+2024-03,Dental,4
+2024-03,Dizziness,6
+2024-03,Dysmenorrhea,3
+2024-03,Fever,2
+2024-03,Gastrointestinal,8
+2024-03,Headache,9
+2024-03,Respiratory,7
+2024-03,Wound/Injury,2
+2024-04,Allergy,2
+2024-04,Blood Pressure,1
+2024-04,Body Pain,12
+2024-04,Dental,5
+2024-04,Dizziness,4
+2024-04,Dysmenorrhea,1
+2024-04,Fever,4
+2024-04,Gastrointestinal,8
+2024-04,Headache,8
+2024-04,Respiratory,9
+2024-04,Wound/Injury,2
+2024-05,Allergy,1
+2024-05,Blood Pressure,2
+2024-05,Body Pain,6
+2024-05,Dental,2
+2024-05,Dizziness,3
+2024-05,Fever,2
+2024-05,Gastrointestinal,4
+2024-05,Headache,5
+2024-05,Respiratory,6
+2024-05,Wound/Injury,1
+2024-06,Allergy,11
+2024-06,Blood Pressure,1
+2024-06,Body Pain,14
+2024-06,Dental,14
+2024-06,Dizziness,4
+2024-06,Dysmenorrhea,6
+2024-06,Fever,7
+2024-06,Gastrointestinal,14
+2024-06,Headache,32
+2024-06,Respiratory,28
+2024-06,Wound/Injury,8
+2024-07,Allergy,1
+2024-07,Blood Pressure,1
+2024-07,Body Pain,1
+2024-07,Dental,1
+2024-07,Dizziness,2
+2024-07,Fever,1
+2024-07,Gastrointestinal,1
+2024-07,Headache,1
+2024-07,Respiratory,1
+2024-07,Wound/Injury,1
+2024-08,Allergy,1
+2024-08,Blood Pressure,3
+2024-08,Body Pain,3
+2024-08,Dental,4
+2024-08,Dizziness,2
+2024-08,Dysmenorrhea,1
+2024-08,Gastrointestinal,4
+2024-08,Headache,2
+2024-08,Respiratory,14
+2024-08,Wound/Injury,4
+2024-09,Allergy,7
+2024-09,Blood Pressure,12
+2024-09,Body Pain,23
+2024-09,Dental,15
+2024-09,Dizziness,13
+2024-09,Dysmenorrhea,8
+2024-09,Fever,16
+2024-09,Gastrointestinal,29
+2024-09,Headache,56
+2024-09,Respiratory,61
+2024-09,Wound/Injury,10
+2024-10,Allergy,11
+2024-10,Blood Pressure,2
+2024-10,Body Pain,2
+2024-10,Dental,2
+2024-10,Dizziness,1
+2024-10,Dysmenorrhea,2
+2024-10,Fever,7
+2024-10,Gastrointestinal,7
+2024-10,Headache,4
+2024-10,Respiratory,21
+2024-10,Wound/Injury,1
+2024-11,Allergy,7
+2024-11,Body Pain,4
+2024-11,Dental,3
+2024-11,Dizziness,2
+2024-11,Dysmenorrhea,4
+2024-11,Fever,4
+2024-11,Gastrointestinal,13
+2024-11,Headache,37
+2024-11,Respiratory,45
+2024-11,Wound/Injury,6
+2024-12,Allergy,3
+2024-12,Blood Pressure,7
+2024-12,Body Pain,6
+2024-12,Dental,5
+2024-12,Dizziness,7
+2024-12,Dysmenorrhea,3
+2024-12,Fever,4
+2024-12,Gastrointestinal,14
+2024-12,Headache,5
+2024-12,Respiratory,17
+2024-12,Wound/Injury,7
+2025-01,Allergy,3
+2025-01,Blood Pressure,2
+2025-01,Body Pain,14
+2025-01,Dental,5
+2025-01,Dizziness,4
+2025-01,Dysmenorrhea,5
+2025-01,Fever,5
+2025-01,Gastrointestinal,13
+2025-01,Headache,4
+2025-01,Respiratory,6
+2025-01,Wound/Injury,7
+2025-02,Allergy,4
+2025-02,Blood Pressure,2
+2025-02,Body Pain,6
+2025-02,Dental,4
+2025-02,Dizziness,3
+2025-02,Dysmenorrhea,4
+2025-02,Fever,3
+2025-02,Gastrointestinal,10
+2025-02,Headache,6
+2025-02,Respiratory,12
+2025-02,Wound/Injury,3
+2025-03,Allergy,3
+2025-03,Blood Pressure,3
+2025-03,Body Pain,15
+2025-03,Dental,1
+2025-03,Dizziness,7
+2025-03,Dysmenorrhea,3
+2025-03,Fever,3
+2025-03,Gastrointestinal,13
+2025-03,Headache,7
+2025-03,Respiratory,18
+2025-03,Wound/Injury,3
+2025-04,Allergy,15
+2025-04,Body Pain,14
+2025-04,Dental,1
+2025-04,Dizziness,1
+2025-04,Dysmenorrhea,4
+2025-04,Eye/Ear Concern,1
+2025-04,Fever,9
+2025-04,Gastrointestinal,7
+2025-04,Headache,35
+2025-04,Respiratory,19
+2025-04,Wound/Injury,4
+2025-05,Allergy,23
+2025-05,Body Pain,31
+2025-05,Dental,7
+2025-05,Dizziness,2
+2025-05,Dysmenorrhea,11
+2025-05,Fever,10
+2025-05,Gastrointestinal,23
+2025-05,Headache,52
+2025-05,Respiratory,52
+2025-05,Wound/Injury,17
+2025-06,Allergy,12
+2025-06,Blood Pressure,7
+2025-06,Body Pain,17
+2025-06,Dental,11
+2025-06,Dizziness,9
+2025-06,Dysmenorrhea,5
+2025-06,Fever,10
+2025-06,Gastrointestinal,16
+2025-06,Headache,14
+2025-06,Respiratory,35
+2025-06,Wound/Injury,14
+2025-07,Allergy,2
+2025-07,Dental,2
+2025-07,Dysmenorrhea,2
+2025-07,Fever,2
+2025-07,Gastrointestinal,2
+2025-07,Headache,5
+2025-07,Respiratory,6
+2025-07,Wound/Injury,3
+2025-08,Allergy,8
+2025-08,Blood Pressure,2
+2025-08,Body Pain,3
+2025-08,Dental,3
+2025-08,Dizziness,2
+2025-08,Dysmenorrhea,5
+2025-08,Fever,10
+2025-08,Gastrointestinal,5
+2025-08,Headache,1
+2025-08,Respiratory,17
+2025-08,Wound/Injury,1
+2025-09,Allergy,9
+2025-09,Blood Pressure,1
+2025-09,Body Pain,5
+2025-09,Dental,3
+2025-09,Dizziness,1
+2025-09,Dysmenorrhea,3
+2025-09,Fever,6
+2025-09,Gastrointestinal,3
+2025-09,Headache,3
+2025-09,Respiratory,19
+2025-09,Wound/Injury,2
+2025-10,Allergy,7
+2025-10,Blood Pressure,5
+2025-10,Body Pain,6
+2025-10,Dental,3
+2025-10,Dysmenorrhea,3
+2025-10,Fever,9
+2025-10,Gastrointestinal,10
+2025-10,Headache,5
+2025-10,Respiratory,17
+2025-10,Wound/Injury,5
+2025-11,Allergy,9
+2025-11,Blood Pressure,5
+2025-11,Body Pain,6
+2025-11,Dental,3
+2025-11,Dizziness,2
+2025-11,Dysmenorrhea,2
+2025-11,Fever,5
+2025-11,Gastrointestinal,6
+2025-11,Headache,3
+2025-11,Respiratory,21
+2025-11,Wound/Injury,4
+2025-12,Allergy,4
+2025-12,Blood Pressure,2
+2025-12,Body Pain,3
+2025-12,Dental,2
+2025-12,Dizziness,1
+2025-12,Fever,1
+2025-12,Gastrointestinal,1
+2025-12,Headache,3
+2025-12,Respiratory,2
+2025-12,Wound/Injury,2
+2026-01,Allergy,26
+2026-01,Blood Pressure,21
+2026-01,Body Pain,38
+2026-01,Dental,17
+2026-01,Dizziness,18
+2026-01,Dysmenorrhea,11
+2026-01,Fever,15
+2026-01,Gastrointestinal,29
+2026-01,Headache,42
+2026-01,Respiratory,89
+2026-01,Wound/Injury,16
+2026-02,Allergy,52
+2026-02,Blood Pressure,37
+2026-02,Body Pain,63
+2026-02,Dental,39
+2026-02,Dizziness,31
+2026-02,Dysmenorrhea,22
+2026-02,Fever,41
+2026-02,Gastrointestinal,79
+2026-02,Headache,72
+2026-02,Respiratory,121
+2026-02,Wound/Injury,33
+2026-03,Allergy,28
+2026-03,Blood Pressure,22
+2026-03,Body Pain,54
+2026-03,Dental,45
+2026-03,Dizziness,23
+2026-03,Dysmenorrhea,23
+2026-03,Fever,31
+2026-03,Gastrointestinal,58
+2026-03,Headache,73
+2026-03,Respiratory,145
+2026-03,Wound/Injury,35
+2026-04,Allergy,38
+2026-04,Blood Pressure,20
+2026-04,Body Pain,34
+2026-04,Dental,24
+2026-04,Dizziness,12
+2026-04,Dysmenorrhea,13
+2026-04,Fever,29
+2026-04,Gastrointestinal,40
+2026-04,Headache,67
+2026-04,Respiratory,74
+2026-04,Wound/Injury,21
+2026-05,Allergy,22
+2026-05,Blood Pressure,12
+2026-05,Body Pain,33
+2026-05,Dental,19
+2026-05,Dizziness,11
+2026-05,Dysmenorrhea,9
+2026-05,Fever,12
+2026-05,Gastrointestinal,37
+2026-05,Headache,12
+2026-05,Respiratory,48
+2026-05,Wound/Injury,20
+2026-06,Allergy,26
+2026-06,Blood Pressure,20
+2026-06,Body Pain,29
+2026-06,Dental,19
+2026-06,Dizziness,15
+2026-06,Dysmenorrhea,6
+2026-06,Fever,14
+2026-06,Gastrointestinal,52
+2026-06,Headache,39
+2026-06,Respiratory,73
+2026-06,Wound/Injury,12
+2026-07,Allergy,1
+2026-07,Blood Pressure,2
+2026-07,Body Pain,4
+2026-07,Dental,2
+2026-07,Dizziness,1
+2026-07,Dysmenorrhea,3
+2026-07,Gastrointestinal,5
+2026-07,Headache,3
+2026-07,Respiratory,5

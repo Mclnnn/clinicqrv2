@@ -1,0 +1,357 @@
+﻿complaint_raw,complaint_category,count
+N/A,Unknown,1032
+HEADACHE,Headache,703
+ENROLLMENT,Enrollment/Requirement,693
+COLDS,Respiratory,421
+,Unknown,390
+COUGH,Respiratory,387
+ALLERGY,Allergy,380
+CHECK-UP,Check-up/Consultation,337
+FEVER,Fever,316
+STOMACHACHE,Gastrointestinal,312
+BODY PAIN,Body Pain,307
+TOOTHACHE,Dental,297
+SORE THROAT,Respiratory,287
+MINOR WOUND,Wound/Injury,256
+DIZZINESS,Dizziness,222
+DIARRHEA,Gastrointestinal,221
+MEDICAL,Other,219
+MUSCLE PAIN,Body Pain,208
+FOLLOW-UP,Other,205
+BLOOD PRESSURE CHECK,Blood Pressure,200
+DYSMENORRHEA,Dysmenorrhea,178
+MEDICAL CERT.,Medical Certificate,124
+ROTC,Enrollment/Requirement,89
+CONSULTATION,Check-up/Consultation,53
+General Clearance,Enrollment/Requirement,50
+HEALTH EDUCATION,Other,45
+REFERRAL,Other,44
+MEDICAL CERTIFICATE,Medical Certificate,40
+SCUAA,Enrollment/Requirement,37
+MEDICAL CHECK-UP,Check-up/Consultation,36
+MEDICAL CLEARANCE,Enrollment/Requirement,35
+P.E,Enrollment/Requirement,19
+HEIGHT/WEIGHT,Physical Assessment,18
+Disinfection,Other,17
+LBM,Gastrointestinal,16
+Medical Clearance,Enrollment/Requirement,15
+BMI,Physical Assessment,14
+COUGH / COLDS,Respiratory,14
+MBI,Other,14
+HEIGHT/WEIGHT SCALE,Physical Assessment,13
+Med-cert,Medical Certificate,12
+Medical Certificate,Medical Certificate,12
+None,Unknown,11
+CUTS,Other,10
+Facemask & Alcohol,Supply/Medicine Issuance,10
+MED-CERT,Medical Certificate,10
+STOMACH CRAMPS,Gastrointestinal,10
+Med.,Supply/Medicine Issuance,9
+Medical,Other,9
+Medical Cert,Medical Certificate,9
+WEIGHT,Physical Assessment,9
+Face Mask / Alcohol,Supply/Medicine Issuance,8
+Med-Cert,Medical Certificate,8
+Flu,Respiratory,7
+General Hygiene,Other,7
+Minor Cut,Wound/Injury,7
+DEFENSE,Other,6
+ENROLLEMENT,Enrollment/Requirement,6
+Facemask & alcohol,Supply/Medicine Issuance,6
+General Malaise,Other,6
+Supply,Supply/Medicine Issuance,6
+Asthma,Respiratory,5
+Headache,Headache,5
+MED CERT,Medical Certificate,5
+Med Cert.,Medical Certificate,5
+Physical Assessment,Other,5
+Rhinitis,Other,5
+Routine Check,Check-up/Consultation,5
+SARIDON,Other,5
+Ubo,Other,5
+EAR PAIN,Body Pain,4
+High blood,Blood Pressure,4
+HYPERTENSION,Blood Pressure,4
+LAGUNDI,Other,4
+RHINITIS,Other,4
+WOUND,Wound/Injury,4
+Acid,Other,3
+ALCOHOL,Supply/Medicine Issuance,3
+Alcohol,Supply/Medicine Issuance,3
+CELECOXIB,Other,3
+Face Mask,Supply/Medicine Issuance,3
+H/A,Headache,3
+Med Cert,Medical Certificate,3
+Medical Cert.,Medical Certificate,3
+Medicine / Disinfection,Supply/Medicine Issuance,3
+Menstrual Cramps,Dysmenorrhea,3
+Night skin,Other,3
+PERSONAL,Other,3
+REST,Other,3
+Saridon,Other,3
+Sick Leave Request,Other,3
+Sip-on,Other,3
+TRAINING,Enrollment/Requirement,3
+Allergy,Allergy,2
+ASKING FOR MEDS,Supply/Medicine Issuance,2
+BLISTER,Other,2
+CLEANING WOUND,Wound/Injury,2
+cold,Respiratory,2
+Cold & Colds,Respiratory,2
+Cold / Flu,Respiratory,2
+Coughing,Respiratory,2
+DRUG TEST,Other,2
+Efficacent,Other,2
+Eye Pain,Body Pain,2
+Face mask & alcohol,Supply/Medicine Issuance,2
+Facemask / alcohol,Supply/Medicine Issuance,2
+Facemask / Alcohol,Supply/Medicine Issuance,2
+FLUE,Other,2
+GASTRO,Other,2
+HYOSIN,Other,2
+Hyper Acidity,Gastrointestinal,2
+Hyper-acidity,Gastrointestinal,2
+IBUPROFEN,Other,2
+Immune Boost,Other,2
+INDIGESTION,Other,2
+Inflammation,Other,2
+Injury,Wound/Injury,2
+Loperamide,Other,2
+Loss of consciousness,Other,2
+Lower abdomen,Other,2
+Mask,Other,2
+MED- CERT,Supply/Medicine Issuance,2
+MEDICAL CERT,Medical Certificate,2
+Menstrual cramps,Dysmenorrhea,2
+Pain,Body Pain,2
+Paracetamol,Other,2
+Rashes,Allergy,2
+RBS,Other,2
+Sanitization,Other,2
+Sneeze,Other,2
+Synflex,Other,2
+Toothache,Dental,2
+Torque,Other,2
+Vom,Other,2
+weight,Physical Assessment,2
+Weight Monitoring,Physical Assessment,2
+1 White Flower,Other,1
+Abdominal cramps,Gastrointestinal,1
+Abdominal Cramps,Gastrointestinal,1
+abdominal cramps,Gastrointestinal,1
+Abdominal pain,Body Pain,1
+Abdominal Pain,Body Pain,1
+Ache,Other,1
+Acid & High BP,Blood Pressure,1
+Acid Reflux,Other,1
+ACID REFLUX,Other,1
+ACIDITY,Gastrointestinal,1
+AISE,Other,1
+Alcohol / Med,Supply/Medicine Issuance,1
+ALCOHOL / SUPPLY,Supply/Medicine Issuance,1
+alcohol(2),Supply/Medicine Issuance,1
+ALCOHOL/DEQUALINIUM CHLORIDE,Supply/Medicine Issuance,1
+Alcohol/Supply,Supply/Medicine Issuance,1
+Alda Cold,Respiratory,1
+Alergies/Meds,Supply/Medicine Issuance,1
+Arm sprain,Wound/Injury,1
+ASHMA,Other,1
+ASKING FOR CLINIC,Other,1
+Asthma & Nausea,Respiratory,1
+Asthma / Back Pain,Respiratory,1
+Bandage,Other,1
+Biology / Overworked,Other,1
+Blisters,Other,1
+body / lip,Other,1
+Body ache,Other,1
+BOILS,Other,1
+BP / Redness of eyes,Blood Pressure,1
+BP.,Blood Pressure,1
+BRUISE,Other,1
+Bruise,Other,1
+C/H,Other,1
+Calds,Other,1
+Carboicisteine,Other,1
+CAT BITE,Other,1
+CETEREZIN,Other,1
+Cetirizine,Other,1
+CHECE-UP,Other,1
+CHECH-UP,Other,1
+Chest Pain,Body Pain,1
+CHEST PAIN,Body Pain,1
+Citrate,Other,1
+Clean medicine,Supply/Medicine Issuance,1
+Cleaning,Other,1
+cleaning & cotton,Other,1
+cold flu,Respiratory,1
+colds,Respiratory,1
+Colds,Respiratory,1
+Colds forte,Respiratory,1
+Constipation,Other,1
+Constipation / Cough,Respiratory,1
+Contraceptive (Implant / Depo),Other,1
+Cough,Respiratory,1
+Cough / Res. Infection,Respiratory,1
+Cough / Vitamins,Respiratory,1
+Cough/Flulike,Respiratory,1
+Cough/sneeze,Respiratory,1
+Coughing & Coughing,Respiratory,1
+cramp,Other,1
+Cravings,Other,1
+CREMIL S,Other,1
+Cut,Wound/Injury,1
+Cut Injury,Wound/Injury,1
+Daily use,Other,1
+Dequatrin,Other,1
+Diabetes Mellitus,Other,1
+DIARHEA,Other,1
+Diarrhea,Gastrointestinal,1
+DICYCLOVERINE,Other,1
+DISINFECTANT,Other,1
+Disinfectant / Supply,Supply/Medicine Issuance,1
+DRESSING,Wound/Injury,1
+Dry eyes,Other,1
+Dysmenorrhea,Dysmenorrhea,1
+Dysmenorrhea / Dyspepsia,Gastrointestinal,1
+Dyspepsia,Gastrointestinal,1
+Eye Irritation,Eye/Ear Concern,1
+Face mask & Alcohol,Supply/Medicine Issuance,1
+Facemask,Supply/Medicine Issuance,1
+FBS,Other,1
+Fever,Fever,1
+First Aid,Other,1
+FIRST-AID,Other,1
+Flack Pain,Body Pain,1
+FLU,Respiratory,1
+Form,Other,1
+G.O.D.,Other,1
+G.S.S.O,Other,1
+Gastritis/Gas,Other,1
+Gloves,Supply/Medicine Issuance,1
+GLOVES,Supply/Medicine Issuance,1
+H&W,Other,1
+Headach,Other,1
+headache (tension) / headache,Headache,1
+Headadu,Other,1
+Height & Weight,Physical Assessment,1
+Hills / Knee,Other,1
+HNBB,Other,1
+HOT COMPRESS,Other,1
+HYOSINE,Other,1
+Hyperacidity,Gastrointestinal,1
+IBM,Other,1
+Illness (Under Observation),Other,1
+Infection,Other,1
+Inject medicine,Supply/Medicine Issuance,1
+Irritated eyes,Other,1
+Kalintura,Other,1
+Knee fracture,Other,1
+Kwari,Other,1
+Laboratory,Laboratory,1
+LETIRIZEN,Other,1
+Lock Jaw,Other,1
+Loperamid,Other,1
+Loperamide / Tylenol / Mefenamic,Other,1
+LOW,Other,1
+Lysovit,Other,1
+ME7,Other,1
+Med - cert,Supply/Medicine Issuance,1
+Med - Cert,Supply/Medicine Issuance,1
+Med-Cert.,Medical Certificate,1
+MED.,Supply/Medicine Issuance,1
+MED. CERT.,Supply/Medicine Issuance,1
+Med. Cert.,Supply/Medicine Issuance,1
+MEDCERT,Other,1
+MEDICAL KIT,Other,1
+Medical Purposive,Other,1
+Medican,Other,1
+Medicine/Gloves,Supply/Medicine Issuance,1
+Melizine,Other,1
+Menses,Other,1
+Menstruation Cramps,Dysmenorrhea,1
+MINOR INJURY,Wound/Injury,1
+Minor Scrape,Other,1
+MINSTRATION,Other,1
+Muscle Soreness,Other,1
+n-IP,Other,1
+N/A med,Supply/Medicine Issuance,1
+NA,Unknown,1
+NASUEA,Other,1
+NAUSEA,Gastrointestinal,1
+NAUSEOUS,Other,1
+Ngipin,Other,1
+Non-IP,Other,1
+NOOSE BLEED,Wound/Injury,1
+Norgesic Forte,Other,1
+NOT FEELING WELL,Other,1
+NOT FELLING WELL,Other,1
+NP,Other,1
+OF COLDS,Respiratory,1
+Offcold,Respiratory,1
+Office,Other,1
+OJT,Enrollment/Requirement,1
+Pain belly,Body Pain,1
+Pain cramps,Body Pain,1
+Pain/Inflammation,Body Pain,1
+Palpitations,Other,1
+Period,Other,1
+Period Cramps,Other,1
+Pick-up,Other,1
+Pneumonia,Other,1
+Pos b.f.,Other,1
+PRODUCTIVE,Other,1
+Red eyes,Other,1
+Redness of eyes,Other,1
+Ringworm,Other,1
+Running nose,Other,1
+Sakit sa hil,Other,1
+Sakit ulo,Other,1
+Scrape,Other,1
+Serve Food,Other,1
+SICK,Other,1
+Sick,Other,1
+Sinus,Respiratory,1
+Sip-on (Colds),Respiratory,1
+Sip-on/ubo,Other,1
+SIPON,Other,1
+Sipon,Other,1
+Sleeping Problems,Other,1
+SNEEZE,Other,1
+SOLMUX,Other,1
+Stomachache / Abdominal Pain,Body Pain,1
+STRAIN,Other,1
+SUGAR LEVEL,Other,1
+Sugar/Under Result,Other,1
+Supplementation,Other,1
+Supply (Guard House),Supply/Medicine Issuance,1
+Support for sick medicine,Supply/Medicine Issuance,1
+Swollen Eyes,Other,1
+Swollen Eyes / Swollen,Other,1
+Swollen foot,Other,1
+Swollen Right Foot,Other,1
+Swollen Thumb,Other,1
+Syringe 3cc,Other,1
+Therapy,Other,1
+Throat Soreness,Other,1
+Tired,Other,1
+Tissue,Other,1
+Toe,Other,1
+Tongue Injury,Wound/Injury,1
+Tonsilitis,Other,1
+TRASHBAG,Other,1
+tutunlan,Other,1
+ubo,Other,1
+ubo-sakit tilaoc,Other,1
+Upper Res. Infection / Colds,Respiratory,1
+V/D,Other,1
+Vehicular Accident,Other,1
+vit,Other,1
+VOMITING,Gastrointestinal,1
+VP,Other,1
+Weight,Physical Assessment,1
+WIEGHT,Other,1
+Wound,Wound/Injury,1
+Wound/Headache,Headache,1
+ZILCAM,Other,1
+ZILGAM/HYOSINE,Other,1
+[redacted non-complaint text],Unknown,1
