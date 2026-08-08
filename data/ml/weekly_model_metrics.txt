@@ -1,0 +1,10 @@
+ClinicQR Weekly Health Trend Model
+Validation starts: 2026-03-16
+Latest observed week: 2026-07-06
+Prediction week: 2026-07-13
+Selected ML model by validation MAE: RandomForestRegressor
+Selected ML MAE: 4.0232
+Selected ML RMSE: 5.0034
+Selected ML R2: 0.1739
+
+IMPORTANT: dummy_school_calendar.csv contains illustrative dates only and must be replaced by the verified school calendar before thesis/production use.

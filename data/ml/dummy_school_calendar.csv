@@ -1,0 +1,12 @@
+start_date,end_date,event_type,description
+2025-08-04,2025-08-08,School Start,Start of academic year
+2025-09-15,2025-09-19,Regular Assessment,Illustrative assessment period
+2025-10-13,2025-10-17,Midterm Exam,Illustrative midterm examination week
+2025-10-20,2025-10-24,Post Exam,Illustrative post-examination week
+2025-11-03,2025-11-07,Regular Classes,Illustrative regular school week
+2025-12-08,2025-12-12,Final Assessment,Illustrative final assessment period
+2025-12-15,2026-01-02,Holiday Break,Illustrative Christmas/year-end break
+2026-01-05,2026-01-09,Classes Resume,Illustrative return from break
+2026-02-16,2026-02-20,Midterm Exam,Illustrative second-semester midterm
+2026-03-23,2026-03-27,Final Exam,Illustrative final examination week
+2026-03-30,2026-04-30,Academic Break,Illustrative end-of-year break

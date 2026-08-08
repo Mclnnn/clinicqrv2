@@ -1,0 +1,12 @@
+﻿source_week,prediction_week,source_week_start,prediction_week_start,complaint_category,current_cases,predicted_cases,forecast_method,calendar_event
+2026-W28,2026-W29,2026-07-06,2026-07-13,Allergy,0,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Blood Pressure,2,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Body Pain,2,2,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Dental,0,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Dizziness,0,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Dysmenorrhea,0,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Fever,0,1,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Gastrointestinal,1,3,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Headache,0,3,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Respiratory,0,6,RandomForestRegressor,Regular
+2026-W28,2026-W29,2026-07-06,2026-07-13,Wound/Injury,0,1,RandomForestRegressor,Regular
