@@ -1,4 +1,5 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
+import { Building2 } from 'lucide-react';
 import AuthLayout from '../../Layouts/AuthLayout';
 
 export default function Login() {
@@ -29,6 +30,22 @@ export default function Login() {
                 <button disabled={form.processing} className="cq-primary-btn w-full border-0">
                     {form.processing ? 'Signing in...' : 'Sign in'}
                 </button>
+
+                <div className="flex items-center gap-3">
+                    <span className="h-px flex-1 bg-white/10" />
+                    <span className="text-xs font-black uppercase tracking-widest text-white/35">or</span>
+                    <span className="h-px flex-1 bg-white/10" />
+                </div>
+
+                <button
+                    type="button"
+                    onClick={() => router.visit('/school-portal/login')}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-4 py-3 text-center font-black text-cyan-50 transition hover:border-cyan-200/50 hover:bg-cyan-300/20"
+                >
+                    <Building2 size={18} />
+                    Continue with School Portal
+                </button>
+
                 <p className="text-center text-sm text-white/55">
                     Wala pang account? <Link href="/register" className="font-bold text-blue-200">Create Account</Link>
                 </p>

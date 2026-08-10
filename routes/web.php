@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SchoolPortalAuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\StudentController;
@@ -60,6 +61,11 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/school-portal/login', [SchoolPortalAuthController::class, 'show'])
+        ->name('school-portal.login');
+    Route::post('/school-portal/login', [SchoolPortalAuthController::class, 'login'])
+        ->name('school-portal.login.process');
 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);

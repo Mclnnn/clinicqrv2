@@ -20,6 +20,9 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'auth_provider',
+        'school_portal_id',
+        'school_portal_synced_at',
         'student_id',
         'employee_id',
         'user_type',
@@ -45,6 +48,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'school_portal_synced_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
