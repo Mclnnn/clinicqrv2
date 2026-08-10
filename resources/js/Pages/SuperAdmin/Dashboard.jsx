@@ -7,6 +7,7 @@ import InfoTooltip from '../../Components/InfoTooltip';
 export default function Dashboard({ stats, userBreakdown, recentLogs, pendingClearances, recentUsers, analytics, mlDecisions = {} }) {
     const report = analytics?.monthlyReport ?? {};
     const mlPredictions = analytics?.mlPredictions ?? {};
+    const workloadForecast = analytics?.workloadForecast ?? {};
 
     return (
         <SuperAdminLayout title="Super Admin Dashboard" subtitle="System-wide clinic intelligence and account oversight.">
@@ -48,6 +49,8 @@ export default function Dashboard({ stats, userBreakdown, recentLogs, pendingCle
             </div>
 
             <MlPredictionPanel predictions={mlPredictions} initialDecisions={mlDecisions} />
+
+            <WorkloadForecastPanel forecast={workloadForecast} />
 
             <div className="mt-6 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
                 <Panel title="Monthly Prevention Brief">
@@ -96,13 +99,22 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
     const [savingCategory, setSavingCategory] = useState(null);
     const [editingDecisionCategory, setEditingDecisionCategory] = useState(null);
     const [openDecisionMenuCategory, setOpenDecisionMenuCategory] = useState(null);
+    const [selectedFocusTick, setSelectedFocusTick] = useState(0);
     const selected = rows.find(row => row.complaint_category === selectedCategory) ?? top;
     const detailRef = useRef(null);
 
     const selectPrediction = (category) => {
         setSelectedCategory(category);
         window.setTimeout(() => {
-            detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (!detailRef.current) return;
+
+            const headerOffset = 112;
+            const target = detailRef.current.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: Math.max(target, 0), behavior: 'smooth' });
+
+            window.setTimeout(() => {
+                setSelectedFocusTick(current => current + 1);
+            }, 520);
         }, 80);
     };
 
@@ -220,31 +232,10 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                         </div>
                         <p className="mt-4 text-sm leading-6 text-slate-300">{top?.reason}</p>
                     </div>
-                </div>
-
-                <div className="p-6">
-                    <div className="mb-4 flex items-center justify-between gap-3">
-                        <div>
-                            <h3 className="text-lg font-black">Prediction Queue</h3>
-                            <p className="mt-1 text-xs text-slate-500">Sorted by priority score for fast clinic-head review.</p>
-                        </div>
-                        <span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs font-black text-emerald-200">{rows.length} signals</span>
-                    </div>
-
-                    <div className="space-y-3">
-                        {rows.map((row, index) => (
-                            <PredictionSignal
-                                key={row.complaint_category}
-                                row={row}
-                                index={index}
-                                active={selected?.complaint_category === row.complaint_category}
-                                onSelect={() => selectPrediction(row.complaint_category)}
-                            />
-                        ))}
-                    </div>
 
                     {selected && (
                         <PredictionDetail
+                            key={`${selected.complaint_category}-${selectedFocusTick}`}
                             detailRef={detailRef}
                             row={selected}
                             decision={decisions[selected.complaint_category]}
@@ -269,6 +260,28 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                             }}
                         />
                     )}
+                </div>
+
+                <div className="p-6">
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                        <div>
+                            <h3 className="text-lg font-black">Prediction Queue</h3>
+                            <p className="mt-1 text-xs text-slate-500">Sorted by priority score for fast clinic-head review.</p>
+                        </div>
+                        <span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs font-black text-emerald-200">{rows.length} signals</span>
+                    </div>
+
+                    <div className="space-y-3">
+                        {rows.map((row, index) => (
+                            <PredictionSignal
+                                key={row.complaint_category}
+                                row={row}
+                                index={index}
+                                active={selected?.complaint_category === row.complaint_category}
+                                onSelect={() => selectPrediction(row.complaint_category)}
+                            />
+                        ))}
+                    </div>
 
                     <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.035] p-4">
                         <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-200">
@@ -280,6 +293,124 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                             <ModelInfoItem label="Prediction type" value={modelInfo.predictionType ?? 'Monthly case count forecast'} />
                             <ModelInfoItem label="Average error" value={modelInfo.mae ? `±${Number(modelInfo.mae).toFixed(2)} cases` : 'Not available'} />
                             <ModelInfoItem label="Training range" value={modelInfo.monthRange ?? 'Not available'} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function WorkloadForecastPanel({ forecast = {} }) {
+    const row = forecast.row ?? {};
+    const modelInfo = forecast.modelInfo ?? {};
+    const available = Boolean(forecast.available && forecast.row);
+    const predicted = Number(row.predicted_total_visits) || 0;
+    const average = Number(row.rolling_8_average) || 0;
+    const level = row.workload_level ?? 'Unknown';
+    const maxBar = Math.max(predicted, average, 1);
+    const interpretation = workloadInterpretation(predicted, average, modelInfo.selectedMethod ?? row.forecast_method);
+
+    if (!available) {
+        return (
+            <section className="mt-6 rounded-2xl border border-indigo-300/20 bg-slate-950/85 p-6 shadow-2xl shadow-slate-950/25">
+                <div className="flex items-center gap-3">
+                    <span className="rounded-2xl bg-indigo-300/10 p-3 text-indigo-100">
+                        <CalendarCheck size={24} />
+                    </span>
+                    <div>
+                        <h2 className="text-xl font-black">Clinic Workload Forecast</h2>
+                        <p className="mt-1 text-sm text-slate-400">{forecast.message ?? 'Workload prediction results are not available yet.'}</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    return (
+        <section className="mt-6 overflow-hidden rounded-2xl border border-indigo-300/20 bg-[linear-gradient(135deg,rgba(15,23,42,0.98),rgba(17,24,39,0.96))] shadow-2xl shadow-slate-950/25">
+            <div className="grid gap-0 xl:grid-cols-[0.85fr_1.15fr]">
+                <div className="border-b border-white/10 p-6 xl:border-b-0 xl:border-r">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-300/20 bg-indigo-300/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-indigo-100">
+                                <CalendarCheck size={14} /> Workload Forecast
+                            </span>
+                            <h2 className="mt-4 text-2xl font-black">Clinic Busy-Week Test Forecast</h2>
+                            <p className="mt-2 text-sm leading-6 text-slate-400">
+                                ClinicQR reviewed the uploaded historical clinic dataset and tested the next-week workload forecast after the dataset's latest week.
+                            </p>
+                        </div>
+                        <WorkloadBadge level={level} />
+                    </div>
+
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                        <AiMiniStat label="Dataset latest week" value={formatWeekRange(row.source_week_start, row.source_week)} />
+                        <AiMiniStat label="Test forecast week" value={formatWeekRange(row.prediction_week_start, row.prediction_week)} />
+                        <AiMiniStat label="Main driver" value={row.main_recent_driver ?? 'No dominant driver'} />
+                    </div>
+
+                    <div className="mt-5 rounded-2xl border border-indigo-300/20 bg-indigo-300/[0.07] p-5">
+                        <div className="flex items-center justify-between gap-4">
+                            <div>
+                                <div className="text-xs font-black uppercase tracking-widest text-indigo-100/70">Predicted workload</div>
+                                <div className="mt-2 text-4xl font-black text-white">{predicted}</div>
+                                <div className="mt-1 text-sm font-semibold text-slate-400">visits expected</div>
+                            </div>
+                            <InfoTooltip side="left" text="Workload score (0-100): higher means earlier preparation.">
+                                <div className="cursor-help"><PriorityOrb score={row.priority_score ?? 0} /></div>
+                            </InfoTooltip>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-6">
+                    <div className="grid gap-3 sm:grid-cols-2">
+                        <WorkloadMeter label="Predicted visits" value={predicted} max={maxBar} tone="bg-indigo-300" />
+                        <WorkloadMeter label="8-week average" value={average.toFixed(2)} max={maxBar} tone="bg-slate-300" />
+                    </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                        <MetricPill label="Health" value={row.current_health_visits ?? 0} tooltip="Health visits are records with recognized sickness or complaint categories." />
+                        <MetricPill label="Non-health" value={row.current_non_health_visits ?? 0} tooltip="Non-health visits include records such as certificates, enrollment requirements, supplies, and other clinic services." />
+                        <MetricPill label="Calendar" value={row.calendar_event ?? 'Regular'} tooltip="Calendar event is included as a possible workload signal when school calendar data is available." />
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-white/10 bg-slate-950/55 p-4">
+                        <div className="text-xs font-black uppercase tracking-widest text-slate-500">Recommended preparation</div>
+                        <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">{row.recommendation}</p>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-indigo-300/20 bg-indigo-300/[0.07] p-4">
+                        <div className="text-xs font-black uppercase tracking-widest text-indigo-100/70">Forecast interpretation</div>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">{interpretation}</p>
+                        <p className="mt-2 border-t border-indigo-300/15 pt-2 text-xs leading-5 text-slate-400">
+                            This is a dataset-based test forecast. Live future forecasting will use newly recorded ClinicQR visits.
+                        </p>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-amber-300/25 bg-amber-300/[0.08] p-4">
+                        <div className="flex gap-3">
+                            <AlertTriangle size={17} className="mt-0.5 shrink-0 text-amber-100" />
+                            <div>
+                                <div className="text-xs font-black uppercase tracking-widest text-amber-100/80">Development mode</div>
+                                <p className="mt-1 text-xs leading-5 text-amber-50/75">
+                                    This workload forecast uses historical clinic records and available test ClinicQR logs. Once the clinic begins daily use, new visit logs will advance the forecast period automatically.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.035] p-4">
+                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-200">
+                            <TrendingUp size={16} className="text-indigo-200" />
+                            Workload model information
+                        </div>
+                        <div className="grid gap-3 text-sm sm:grid-cols-2">
+                            <ModelInfoItem label="Best validation method" value={modelInfo.selectedMethod ?? row.forecast_method ?? 'Not available'} />
+                            <ModelInfoItem label="Prediction type" value={modelInfo.predictionType ?? 'Weekly clinic workload forecast'} />
+                            <ModelInfoItem label="Validation error" value={modelInfo.mae ? `±${Number(modelInfo.mae).toFixed(2)} visits` : 'Not available'} />
+                            <ModelInfoItem label="Historical weeks used" value={modelInfo.inputWeeks ? `${modelInfo.inputWeeks} weeks` : 'Not available'} />
                         </div>
                     </div>
                 </div>
@@ -352,10 +483,16 @@ function PredictionDetail({
     onCancelDecisionEdit,
 }) {
     return (
-        <div ref={detailRef} className="mt-5 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5">
+        <div ref={detailRef} className="cq-selected-signal-flash mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                    <div className="text-xs font-black uppercase tracking-widest text-cyan-100/70">Selected signal explanation</div>
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-widest text-cyan-100/70">
+                        <span>Selected signal explanation</span>
+                        <span className="inline-flex items-center gap-1 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-2 py-0.5 text-[10px] text-cyan-100">
+                            <span className="h-1.5 w-1.5 rounded-full bg-cyan-200" />
+                            Now reviewing
+                        </span>
+                    </div>
                     <h3 className="mt-2 text-2xl font-black text-cyan-50">{row.complaint_category}</h3>
                 </div>
                 <TrendBadge level={row.trend_level} />
@@ -502,6 +639,48 @@ function TrendBadge({ level }) {
     return <span className={`rounded-full border px-2 py-0.5 text-[10px] font-black uppercase tracking-wide ${tone}`}>{level}</span>;
 }
 
+function WorkloadBadge({ level }) {
+    const tone = {
+        High: 'border-orange-300/30 bg-orange-300/10 text-orange-100',
+        Moderate: 'border-amber-300/30 bg-amber-300/10 text-amber-100',
+        Typical: 'border-indigo-300/30 bg-indigo-300/10 text-indigo-100',
+        Low: 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100',
+    }[level] ?? 'border-slate-300/20 bg-white/5 text-slate-300';
+
+    return <span className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wide ${tone}`}>{level}</span>;
+}
+
+function WorkloadMeter({ label, value, max, tone }) {
+    const numericValue = Number(value) || 0;
+    const width = Math.max((numericValue / Math.max(Number(max) || 1, 1)) * 100, numericValue > 0 ? 6 : 0);
+
+    return (
+        <div className="rounded-xl border border-white/10 bg-slate-950/60 p-4">
+            <div className="flex items-center justify-between gap-3">
+                <div className="text-xs font-black uppercase tracking-widest text-slate-500">{label}</div>
+                <div className="text-xl font-black text-white">{value}</div>
+            </div>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className={`h-full rounded-full ${tone} transition-all duration-700`} style={{ width: `${width}%` }} />
+            </div>
+        </div>
+    );
+}
+
+function workloadInterpretation(predicted, average, method) {
+    const methodLabel = method || 'the best validation method';
+
+    if (average > 0 && predicted <= average * 0.5) {
+        return `ClinicQR detected a recent workload drop. ${methodLabel} produced a lower next-week estimate, but the recent 8-week average is still higher, so the clinic should keep monitoring.`;
+    }
+
+    if (average > 0 && predicted >= average * 1.25) {
+        return `ClinicQR detected a possible workload increase. ${methodLabel} produced a higher next-week estimate than the recent 8-week average, so early preparation is recommended.`;
+    }
+
+    return `ClinicQR expects workload to stay near the recent pattern. ${methodLabel} was selected from validation results, so the forecast should be treated as planning support.`;
+}
+
 function statusTone(status = '') {
     return status.toLowerCase().includes('preventive')
         ? 'bg-amber-300/10 text-amber-100'
@@ -521,6 +700,29 @@ function formatMonth(monthKey) {
     const [year, month] = monthKey.split('-');
     const date = new Date(Number(year), Number(month) - 1, 1);
     return date.toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+}
+
+function formatWeekRange(dateValue, fallback) {
+    if (!dateValue) return fallback ?? '-';
+
+    const start = new Date(dateValue);
+    if (Number.isNaN(start.getTime())) return fallback ?? '-';
+
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+
+    const sameYear = start.getFullYear() === end.getFullYear();
+    const sameMonth = sameYear && start.getMonth() === end.getMonth();
+
+    if (sameMonth) {
+        return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(undefined, { day: 'numeric', year: 'numeric' })}`;
+    }
+
+    if (sameYear) {
+        return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    }
+
+    return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })} - ${end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
 }
 
 function Stat({ icon: Icon, label, value }) {

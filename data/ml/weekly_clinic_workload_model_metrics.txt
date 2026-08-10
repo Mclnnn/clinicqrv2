@@ -1,0 +1,13 @@
+ClinicQR Weekly Clinic Workload Forecast
+Input weeks: 183
+Training rows: 154
+Validation rows: 16
+Validation starts: 2026-03-16
+Latest observed week: 2026-07-06
+Prediction week: 2026-07-13
+Selected method: Persistence baseline (current week)
+MAE: 68.1875
+RMSE: 91.3356
+R2: -0.7735
+
+This workload forecast uses all clinic records, not only health complaint categories.

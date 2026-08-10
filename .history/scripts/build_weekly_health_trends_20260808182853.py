@@ -1,3 +1,19 @@
+"""
+Build the weekly health-trend dataset used by the ClinicQR ML pipeline.
+
+Input:
+    data/ml/clinic_logbook_clean_for_ml.csv
+
+Output:
+    data/ml/weekly_health_trends.csv
+
+Week convention:
+    Monday through Sunday.
+
+This script intentionally uses the same 11 health categories currently used
+by train_health_trend_model.py so the new weekly pipeline does not silently
+change the scope of the existing monthly ML model.
+"""
 
 import csv
 from collections import Counter

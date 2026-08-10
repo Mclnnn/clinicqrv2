@@ -1,0 +1,2 @@
+﻿source_week,prediction_week,source_week_start,prediction_week_start,current_total_visits,predicted_total_visits,current_health_visits,current_non_health_visits,workload_level,priority_score,main_recent_driver,recommendation,forecast_method,calendar_event,rolling_8_average
+2026-W28,2026-W29,2026-07-06,2026-07-13,18,18,5,13,Low,40,Medical certificates,Expected workload is lower than usual. Continue regular monitoring.,Persistence baseline (current week),Regular,107.0

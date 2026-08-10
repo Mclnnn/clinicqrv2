@@ -18,6 +18,7 @@ class ClinicAnalytics
             'todayQueue' => self::todayQueue(),
             'monthlyReport' => self::monthlyReport(),
             'mlPredictions' => self::mlPredictions(),
+            'workloadForecast' => self::workloadForecast(),
         ];
     }
 
@@ -137,6 +138,128 @@ class ClinicAnalytics
                 $info['testingRows'] = (int) trim(substr($line, strlen('Testing rows:')));
             } elseif (str_starts_with($line, 'Month range:')) {
                 $info['monthRange'] = trim(substr($line, strlen('Month range:')));
+            } elseif (str_starts_with($line, 'MAE:')) {
+                $info['mae'] = (float) trim(substr($line, strlen('MAE:')));
+            } elseif (str_starts_with($line, 'RMSE:')) {
+                $info['rmse'] = (float) trim(substr($line, strlen('RMSE:')));
+            } elseif (str_starts_with($line, 'R2:')) {
+                $info['r2'] = (float) trim(substr($line, strlen('R2:')));
+            }
+        }
+
+        return $info;
+    }
+
+    public static function workloadForecast(): array
+    {
+        $path = base_path('data/ml/weekly_clinic_workload_predictions.csv');
+
+        if (! file_exists($path) || ! is_readable($path)) {
+            return [
+                'available' => false,
+                'message' => 'Workload forecast file not available',
+                'row' => null,
+                'modelInfo' => self::workloadModelInfo(),
+            ];
+        }
+
+        $handle = fopen($path, 'r');
+        if ($handle === false) {
+            return [
+                'available' => false,
+                'message' => 'Workload forecast file could not be opened',
+                'row' => null,
+                'modelInfo' => self::workloadModelInfo(),
+            ];
+        }
+
+        $headers = fgetcsv($handle);
+        if (! $headers) {
+            fclose($handle);
+
+            return [
+                'available' => false,
+                'message' => 'Workload forecast file is empty',
+                'row' => null,
+                'modelInfo' => self::workloadModelInfo(),
+            ];
+        }
+
+        $headers = array_map(fn ($header) => trim((string) $header, "\xEF\xBB\xBF \t\n\r\0\x0B"), $headers);
+        $data = fgetcsv($handle);
+        fclose($handle);
+
+        if ($data === false) {
+            return [
+                'available' => false,
+                'message' => 'Workload forecast has no prediction row',
+                'row' => null,
+                'modelInfo' => self::workloadModelInfo(),
+            ];
+        }
+
+        $row = array_combine($headers, array_pad($data, count($headers), null));
+        if (! $row) {
+            return [
+                'available' => false,
+                'message' => 'Workload forecast row could not be parsed',
+                'row' => null,
+                'modelInfo' => self::workloadModelInfo(),
+            ];
+        }
+
+        return [
+            'available' => true,
+            'message' => null,
+            'row' => [
+                'source_week' => $row['source_week'] ?? null,
+                'prediction_week' => $row['prediction_week'] ?? null,
+                'source_week_start' => $row['source_week_start'] ?? null,
+                'prediction_week_start' => $row['prediction_week_start'] ?? null,
+                'current_total_visits' => (int) ($row['current_total_visits'] ?? 0),
+                'predicted_total_visits' => (int) ($row['predicted_total_visits'] ?? 0),
+                'current_health_visits' => (int) ($row['current_health_visits'] ?? 0),
+                'current_non_health_visits' => (int) ($row['current_non_health_visits'] ?? 0),
+                'workload_level' => $row['workload_level'] ?? 'Unknown',
+                'priority_score' => (int) ($row['priority_score'] ?? 0),
+                'main_recent_driver' => $row['main_recent_driver'] ?? 'No dominant driver',
+                'recommendation' => $row['recommendation'] ?? '',
+                'forecast_method' => $row['forecast_method'] ?? 'Unknown',
+                'calendar_event' => $row['calendar_event'] ?? 'Regular',
+                'rolling_8_average' => (float) ($row['rolling_8_average'] ?? 0),
+            ],
+            'modelInfo' => self::workloadModelInfo(),
+        ];
+    }
+
+    private static function workloadModelInfo(): array
+    {
+        $path = base_path('data/ml/weekly_clinic_workload_model_metrics.txt');
+        $info = [
+            'selectedMethod' => null,
+            'mae' => null,
+            'rmse' => null,
+            'r2' => null,
+            'inputWeeks' => null,
+            'trainingRows' => null,
+            'validationRows' => null,
+            'predictionType' => 'Weekly total clinic workload forecast',
+            'notice' => 'Workload forecast uses all clinic records, including health and non-health clinic activity.',
+        ];
+
+        if (! file_exists($path) || ! is_readable($path)) {
+            return $info;
+        }
+
+        foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $line) {
+            if (str_starts_with($line, 'Input weeks:')) {
+                $info['inputWeeks'] = (int) trim(substr($line, strlen('Input weeks:')));
+            } elseif (str_starts_with($line, 'Training rows:')) {
+                $info['trainingRows'] = (int) trim(substr($line, strlen('Training rows:')));
+            } elseif (str_starts_with($line, 'Validation rows:')) {
+                $info['validationRows'] = (int) trim(substr($line, strlen('Validation rows:')));
+            } elseif (str_starts_with($line, 'Selected method:')) {
+                $info['selectedMethod'] = trim(substr($line, strlen('Selected method:')));
             } elseif (str_starts_with($line, 'MAE:')) {
                 $info['mae'] = (float) trim(substr($line, strlen('MAE:')));
             } elseif (str_starts_with($line, 'RMSE:')) {
@@ -299,6 +422,7 @@ class ClinicAnalytics
     {
         $actual = self::monthlyReport();
         $mlPredictions = self::mlPredictions();
+        $workloadForecast = self::workloadForecast();
         $forecast = $mlPredictions['highestPriority'] ?? null;
         $decision = null;
         $event = null;
@@ -337,6 +461,7 @@ class ClinicAnalytics
             'forecastAvailable' => $mlPredictions['available'] ?? false,
             'sourceMonth' => $mlPredictions['sourceMonth'] ?? null,
             'predictionMonth' => $mlPredictions['predictionMonth'] ?? null,
+            'workloadForecast' => $workloadForecast,
             'decision' => $decision,
             'event' => $event,
         ];

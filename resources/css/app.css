@@ -23,6 +23,36 @@ body {
     font-family: 'Instrument Sans', system-ui, sans-serif;
 }
 
+@keyframes cq-selected-signal-flash {
+    0% {
+        box-shadow: 0 0 0 0 rgba(103, 232, 249, 0), 0 0 0 rgba(103, 232, 249, 0);
+        opacity: .72;
+        transform: translateY(24px) scale(.955);
+    }
+
+    28% {
+        box-shadow: 0 0 0 8px rgba(103, 232, 249, .18), 0 30px 80px rgba(8, 145, 178, .34);
+        opacity: 1;
+        transform: translateY(-8px) scale(1.022);
+    }
+
+    62% {
+        box-shadow: 0 0 0 5px rgba(103, 232, 249, .12), 0 22px 55px rgba(8, 145, 178, .22);
+        transform: translateY(-2px) scale(1.006);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(103, 232, 249, 0), 0 0 0 rgba(103, 232, 249, 0);
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.cq-selected-signal-flash {
+    animation: cq-selected-signal-flash 1.45s cubic-bezier(.16, .84, .24, 1);
+    transform-origin: center top;
+}
+
 .cq-font-display {
     font-family: 'Cabinet Grotesk', 'Instrument Sans', system-ui, sans-serif;
 }
