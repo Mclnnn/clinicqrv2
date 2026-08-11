@@ -222,7 +222,7 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                         </div>
                     </div>
 
-                    <div className="mt-6 rounded-2xl border border-white/15 bg-white/[0.08] p-5 shadow-xl shadow-blue-950/10">
+                    <div className="mt-6 rounded-2xl border border-white/18 bg-[linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.07))] p-5 shadow-xl shadow-blue-950/10">
                         <div className="flex items-center justify-between gap-4">
                             <div>
                                 <div className="text-xs font-black uppercase tracking-widest text-blue-100/65">Highest review priority</div>
@@ -490,17 +490,17 @@ function PredictionDetail({
     onCancelDecisionEdit,
 }) {
     return (
-        <div ref={detailRef} className="cq-selected-signal-flash mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-5">
+        <div ref={detailRef} className="cq-selected-signal-flash mt-6 rounded-2xl border border-white/16 bg-slate-950/24 p-5 shadow-xl shadow-blue-950/10">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-widest text-cyan-100/70">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-widest text-blue-100/70">
                         <span>Selected signal explanation</span>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-2 py-0.5 text-[10px] text-cyan-100">
-                            <span className="h-1.5 w-1.5 rounded-full bg-cyan-200" />
+                        <span className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] text-blue-50">
+                            <span className="h-1.5 w-1.5 rounded-full bg-white" />
                             Now reviewing
                         </span>
                     </div>
-                    <h3 className="mt-2 text-2xl font-black text-cyan-50">{row.complaint_category}</h3>
+                    <h3 className="mt-2 text-2xl font-black text-white">{row.complaint_category}</h3>
                 </div>
                 <TrendBadge level={row.trend_level} />
             </div>
@@ -512,18 +512,21 @@ function PredictionDetail({
                 <MetricPill label="Priority" value={row.priority_score} tooltip="Priority score (0–100): higher means earlier clinic-head review." tooltipOnValue />
             </div>
 
-            <div className="mt-4 rounded-xl border border-white/10 bg-slate-950/45 p-4">
-                <div className="text-xs font-black uppercase tracking-widest text-slate-500">Recommended action</div>
+            <div className="mt-4 rounded-xl border border-blue-100/15 bg-white/[0.07] p-4">
+                <div className="text-xs font-black uppercase tracking-widest text-blue-100/60">Recommended action</div>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">{row.recommendation}</p>
             </div>
 
-            <div className="mt-3 rounded-xl border border-white/10 bg-slate-950/45 p-4">
-                <div className="text-xs font-black uppercase tracking-widest text-slate-500">Reason</div>
+            <div className="mt-3 rounded-xl border border-white/10 bg-slate-950/35 p-4">
+                <div className="text-xs font-black uppercase tracking-widest text-blue-100/55">Reason</div>
                 <p className="mt-2 text-sm leading-6 text-slate-300">{row.reason}</p>
             </div>
 
-            <div className="mt-4 rounded-xl border border-emerald-300/20 bg-emerald-300/[0.06] p-4">
-                <div className="text-xs font-black uppercase tracking-widest text-emerald-100/70">Clinic head decision</div>
+            <div className="mt-4 rounded-2xl border border-white/15 bg-[linear-gradient(145deg,rgba(36,70,184,0.24),rgba(15,23,42,0.58))] p-4 shadow-inner shadow-white/5">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="text-xs font-black uppercase tracking-widest text-blue-100/75">Clinic head decision</div>
+                    <span className="w-fit rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-50/80">Human review</span>
+                </div>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
                     Review the forecast, then choose the final preventive response. Your decision is recorded in the ClinicQR decision history.
                 </p>
@@ -558,16 +561,16 @@ function PredictionDetail({
                         rows={2}
                         maxLength={2000}
                         placeholder="Why this action was chosen, or what should be monitored"
-                        className="mt-2 w-full rounded-xl border border-white/15 bg-slate-950/70 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/60"
+                        className="mt-2 w-full rounded-xl border border-white/15 bg-slate-950/70 p-3 text-sm text-slate-100 outline-none transition focus:border-blue-200/70"
                     />
                 </div>}
 
                 {(!decision || isEditingDecision) && (!isModifying ? (
                     <div className="mt-4 flex flex-wrap gap-2">
-                        <button type="button" disabled={saving} onClick={onApprove} className="inline-flex items-center gap-2 rounded-xl bg-emerald-300 px-3 py-2 text-sm font-black text-slate-950 transition hover:bg-emerald-200 disabled:cursor-not-allowed disabled:opacity-60">
+                        <button type="button" disabled={saving} onClick={onApprove} className="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-sm font-black text-[#102f68] shadow-lg shadow-blue-950/20 transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-60">
                             <CheckCircle2 size={16} /> Approve recommendation
                         </button>
-                        <button type="button" disabled={saving} onClick={onModify} className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-3 py-2 text-sm font-black text-cyan-100 transition hover:bg-cyan-300/20 disabled:cursor-not-allowed disabled:opacity-60">
+                        <button type="button" disabled={saving} onClick={onModify} className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-sm font-black text-blue-50 transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-60">
                             <Pencil size={16} /> Modify action
                         </button>
                         <button type="button" disabled={saving} onClick={onReject} className="inline-flex items-center gap-2 rounded-xl border border-rose-300/30 bg-rose-300/10 px-3 py-2 text-sm font-black text-rose-100 transition hover:bg-rose-300/20 disabled:cursor-not-allowed disabled:opacity-60">
@@ -582,10 +585,10 @@ function PredictionDetail({
                             value={customAction}
                             onChange={(event) => onCustomActionChange(event.target.value)}
                             rows={3}
-                            className="mt-2 w-full rounded-xl border border-white/15 bg-slate-950/70 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/60"
+                            className="mt-2 w-full rounded-xl border border-white/15 bg-slate-950/70 p-3 text-sm text-slate-100 outline-none transition focus:border-blue-200/70"
                         />
                         <div className="mt-3 flex flex-wrap gap-2">
-                            <button type="button" disabled={saving} onClick={onSaveModification} className="rounded-xl bg-cyan-300 px-3 py-2 text-sm font-black text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60">{saving ? 'Saving...' : 'Save modified action'}</button>
+                            <button type="button" disabled={saving} onClick={onSaveModification} className="rounded-xl bg-white px-3 py-2 text-sm font-black text-[#102f68] transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-60">{saving ? 'Saving...' : 'Save modified action'}</button>
                             <button type="button" disabled={saving} onClick={onCancelModification} className="rounded-xl border border-white/15 px-3 py-2 text-sm font-black text-slate-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60">Cancel</button>
                         </div>
                     </div>
@@ -597,11 +600,11 @@ function PredictionDetail({
 
 function PriorityOrb({ score }) {
     return (
-        <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10 shadow-lg shadow-cyan-950/40">
-            <div className="absolute inset-2 rounded-full border border-cyan-100/10" />
+        <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 shadow-lg shadow-blue-950/40">
+            <div className="absolute inset-2 rounded-full border border-blue-100/15" />
             <div className="text-center">
-                <div className="text-3xl font-black text-cyan-100">{score}</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-cyan-200/70">Score</div>
+                <div className="text-3xl font-black text-white">{score}</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-blue-100/70">Score</div>
             </div>
         </div>
     );
@@ -609,20 +612,22 @@ function PriorityOrb({ score }) {
 
 function AiMiniStat({ label, value }) {
     return (
-        <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
-            <div className="text-xs font-black uppercase tracking-wide text-slate-500">{label}</div>
+        <div className="rounded-2xl border border-white/12 bg-white/[0.08] p-4">
+            <div className="text-xs font-black uppercase tracking-wide text-blue-100/55">{label}</div>
             <div className="mt-2 truncate text-lg font-black text-white">{value}</div>
         </div>
     );
 }
 
 function MetricPill({ label, value, tooltip, tooltipOnValue = false }) {
-    return (
-        <div className="rounded-xl border border-white/10 bg-slate-950/60 p-3">
-            <div className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-slate-500">{label}{tooltip && !tooltipOnValue && <InfoTooltip text={tooltip} />}</div>
-            {tooltipOnValue ? <InfoTooltip text={tooltip}><div className="mt-1 cursor-help text-lg font-black text-white">{value}</div></InfoTooltip> : <div className="mt-1 text-lg font-black text-white">{value}</div>}
+    const pill = (
+        <div className={`rounded-xl border border-white/10 bg-slate-950/35 p-3 ${tooltip ? 'cursor-help transition hover:border-blue-100/25 hover:bg-white/[0.08]' : ''}`}>
+            <div className="text-[10px] font-black uppercase tracking-widest text-blue-100/55">{label}</div>
+            <div className="mt-1 text-lg font-black text-white">{value}</div>
         </div>
     );
+
+    return tooltip ? <InfoTooltip text={tooltip}>{pill}</InfoTooltip> : pill;
 }
 
 function ModelInfoItem({ label, value }) {
@@ -743,7 +748,15 @@ function Stat({ icon: Icon, label, value }) {
 }
 
 function Panel({ title, action, children, className = '' }) {
-    return <section className={`rounded-2xl border border-white/15 bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08))] p-5 shadow-2xl shadow-blue-950/12 backdrop-blur-md ${className}`}><div className="mb-4 flex items-center justify-between gap-3"><h2 className="text-lg font-black">{title}</h2>{action}</div>{children}</section>;
+    return (
+        <section className={`rounded-2xl border border-white/16 bg-[linear-gradient(155deg,rgba(15,31,73,0.82),rgba(13,24,52,0.72)_52%,rgba(7,18,40,0.78))] p-5 shadow-2xl shadow-blue-950/20 backdrop-blur-md ${className}`}>
+            <div className="mb-4 flex items-center justify-between gap-3">
+                <h2 className="text-lg font-black text-white drop-shadow-sm">{title}</h2>
+                {action}
+            </div>
+            {children}
+        </section>
+    );
 }
 
 function LineChart({ rows = [] }) {
@@ -913,15 +926,15 @@ function AnalyticsEmptyState({ title, message }) {
 function PreventionBrief({ report = {} }) {
     return (
         <div className="space-y-4">
-            <div className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 p-4">
-                <div className="text-sm font-bold uppercase text-emerald-200">{report.month}</div>
-                <div className="mt-2 text-2xl font-black">{report.topConcern?.label}</div>
-                <div className="mt-1 text-sm text-slate-400">{report.topConcern?.value ?? 0} cases this month, {report.change ?? 0}% vs previous month</div>
+            <div className="rounded-2xl border border-blue-100/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.13),rgba(36,70,184,0.16),rgba(7,18,40,0.42))] p-5 shadow-inner shadow-white/5">
+                <div className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-blue-50">{report.month}</div>
+                <div className="mt-4 text-3xl font-black text-white">{report.topConcern?.label}</div>
+                <div className="mt-2 text-sm font-semibold text-blue-50/75">{report.topConcern?.value ?? 0} cases this month, {report.change ?? 0}% vs previous month</div>
             </div>
             <div className="space-y-2">
                 {report.recommendations?.map(item => (
-                    <div key={item} className="flex gap-3 rounded-lg border border-white/10 bg-slate-950/50 p-3 text-sm text-slate-300">
-                        <AlertTriangle size={17} className="mt-0.5 shrink-0 text-amber-200" />
+                    <div key={item} className="flex gap-3 rounded-xl border border-amber-100/15 bg-slate-950/42 p-4 text-sm font-semibold leading-6 text-slate-200 shadow-lg shadow-blue-950/10">
+                        <AlertTriangle size={17} className="mt-0.5 shrink-0 text-amber-100" />
                         <span>{item}</span>
                     </div>
                 ))}
@@ -949,9 +962,9 @@ function InventoryRisk({ stock = {} }) {
 
 function MiniStat({ label, value }) {
     return (
-        <div className="rounded-lg border border-white/10 bg-slate-950/50 p-4 text-center">
-            <div className="text-2xl font-black text-blue-200">{value}</div>
-            <div className="mt-1 text-xs font-black uppercase text-slate-500">{label}</div>
+        <div className="rounded-2xl border border-white/14 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(15,23,42,0.52))] p-4 text-center shadow-lg shadow-blue-950/10">
+            <div className="text-3xl font-black text-white">{value}</div>
+            <div className="mt-1 text-[10px] font-black uppercase tracking-widest text-blue-100/60">{label}</div>
         </div>
     );
 }
@@ -1024,5 +1037,17 @@ function UserList({ users = [] }) {
 
 function Rows({ items = [], empty }) {
     if (!items?.length) return <p className="text-sm text-slate-500">{empty}</p>;
-    return <div className="space-y-3">{items.map((item, index) => <div key={index} className="flex items-center justify-between gap-4 rounded-lg border border-white/10 bg-slate-950/50 p-4"><div className="min-w-0"><div className="truncate text-sm font-bold">{item.title}</div><div className="mt-1 truncate text-xs text-slate-500">{item.meta}</div></div><span className="shrink-0 rounded-full bg-blue-300/10 px-3 py-1 text-xs font-bold text-blue-200">{item.tag}</span></div>)}</div>;
+    return (
+        <div className="space-y-3">
+            {items.map((item, index) => (
+                <div key={index} className="flex items-center justify-between gap-4 rounded-2xl border border-white/12 bg-slate-950/42 p-4 shadow-lg shadow-blue-950/10 transition duration-300 hover:-translate-y-0.5 hover:border-blue-100/30 hover:bg-white/[0.08]">
+                    <div className="min-w-0">
+                        <div className="truncate text-sm font-black text-white">{item.title}</div>
+                        <div className="mt-1 truncate text-xs font-semibold text-blue-50/55">{item.meta}</div>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs font-black text-blue-50">{item.tag}</span>
+                </div>
+            ))}
+        </div>
+    );
 }
