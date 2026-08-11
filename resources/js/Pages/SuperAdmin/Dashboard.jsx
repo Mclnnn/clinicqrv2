@@ -40,11 +40,18 @@ export default function Dashboard({ stats, userBreakdown, recentLogs, pendingCle
             </div>
 
             <div className="mt-6 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-                <Panel title="Monthly Clinic Visits" action={<span className="rounded-full bg-blue-300/10 px-3 py-1 text-xs font-black text-blue-200">6 months</span>}>
+                <Panel
+                    title="Monthly Clinic Visits"
+                    action={
+                        <InfoTooltip side="bottom" text="Actual ClinicQR visits from the last 6 months.">
+                            <span className="cursor-help rounded-full bg-blue-300/10 px-3 py-1 text-xs font-black text-blue-100">6-month view</span>
+                        </InfoTooltip>
+                    }
+                >
                     <LineChart rows={analytics?.monthlyTrend} />
                 </Panel>
-                <Panel title="Top Sickness Trends" action={<span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs font-black text-emerald-200">{report.month}</span>}>
-                    <RankedBars rows={analytics?.visitPurpose} />
+                <Panel title="Top Sickness Trends" action={<span className="rounded-full bg-blue-300/10 px-3 py-1 text-xs font-black text-blue-100">{report.month}</span>}>
+                    <RankedBars rows={analytics?.visitPurpose} fallbackMonth={report.month} />
                 </Panel>
             </div>
 
@@ -179,16 +186,16 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
     }
 
     return (
-        <section className="mt-6 overflow-hidden rounded-2xl border border-cyan-300/20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.98),rgba(2,6,23,0.96))] shadow-2xl shadow-cyan-950/25">
+        <section className="mt-6 overflow-hidden rounded-3xl border border-blue-100/20 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%),linear-gradient(135deg,rgba(36,70,184,0.92),rgba(16,47,104,0.94)_42%,rgba(7,26,61,0.96))] shadow-2xl shadow-blue-950/25">
             <div className="grid gap-0 xl:grid-cols-[0.9fr_1.1fr]">
-                <div className="border-b border-white/10 p-6 xl:border-b-0 xl:border-r">
+                <div className="border-b border-white/12 p-6 xl:border-b-0 xl:border-r">
                     <div className="flex items-start justify-between gap-4">
                         <div>
-                            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-cyan-100">
+                            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-blue-50">
                                 <BrainCircuit size={14} /> ML Forecast
                             </span>
                             <h2 className="mt-4 text-2xl font-black">AI Health Trend Prediction</h2>
-                            <p className="mt-2 text-sm leading-6 text-slate-400">
+                            <p className="mt-2 text-sm leading-6 text-blue-50/70">
                                 ClinicQR reviewed historical clinic logbook patterns and generated a next-month health trend forecast for clinic head review.
                             </p>
                         </div>
@@ -215,11 +222,11 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                         </div>
                     </div>
 
-                    <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                    <div className="mt-6 rounded-2xl border border-white/15 bg-white/[0.08] p-5 shadow-xl shadow-blue-950/10">
                         <div className="flex items-center justify-between gap-4">
                             <div>
-                                <div className="text-xs font-black uppercase tracking-widest text-slate-500">Highest review priority</div>
-                                <div className="mt-2 text-3xl font-black text-cyan-100">{top?.complaint_category}</div>
+                                <div className="text-xs font-black uppercase tracking-widest text-blue-100/65">Highest review priority</div>
+                                <div className="mt-2 text-3xl font-black text-white">{top?.complaint_category}</div>
                             </div>
                             <InfoTooltip side="left" text="Priority score (0–100): higher means earlier clinic-head review.">
                                 <div className="cursor-help"><PriorityOrb score={top?.priority_score ?? 0} /></div>
@@ -262,13 +269,13 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                     )}
                 </div>
 
-                <div className="p-6">
+                <div className="bg-slate-950/18 p-6">
                     <div className="mb-4 flex items-center justify-between gap-3">
                         <div>
                             <h3 className="text-lg font-black">Prediction Queue</h3>
-                            <p className="mt-1 text-xs text-slate-500">Sorted by priority score for fast clinic-head review.</p>
+                            <p className="mt-1 text-xs text-blue-50/55">Sorted by review urgency for fast clinic-head action.</p>
                         </div>
-                        <span className="rounded-full bg-emerald-300/10 px-3 py-1 text-xs font-black text-emerald-200">{rows.length} signals</span>
+                        <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-black text-blue-50">{rows.length} signals</span>
                     </div>
 
                     <div className="space-y-3">
@@ -283,9 +290,9 @@ function MlPredictionPanel({ predictions = {}, initialDecisions = {} }) {
                         ))}
                     </div>
 
-                    <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                    <div className="mt-5 rounded-2xl border border-white/12 bg-white/[0.06] p-4">
                         <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-200">
-                            <TrendingUp size={16} className="text-cyan-200" />
+                            <TrendingUp size={16} className="text-blue-100" />
                             Model information
                         </div>
                         <div className="grid gap-3 text-sm sm:grid-cols-2">
@@ -426,20 +433,20 @@ function PredictionSignal({ row, index, active = false, onSelect }) {
         <button
             type="button"
             onClick={onSelect}
-            className={`group w-full rounded-2xl border p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-slate-900/70 ${
+            className={`group w-full rounded-2xl border p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.10] ${
                 active
-                    ? 'border-cyan-300/40 bg-cyan-300/[0.08] shadow-lg shadow-cyan-950/30'
-                    : 'border-white/10 bg-slate-950/55'
+                    ? 'border-white/35 bg-white/[0.13] shadow-lg shadow-blue-950/30'
+                    : 'border-white/12 bg-slate-950/35'
             }`}
         >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-300/10 text-xs font-black text-cyan-100">{index + 1}</span>
+                        <span className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-black ${active ? 'bg-white text-[#102f68]' : 'bg-white/10 text-blue-100'}`}>{index + 1}</span>
                         <span className="truncate font-black">{row.complaint_category}</span>
                         <TrendBadge level={row.trend_level} />
                     </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-blue-50/55">
                         <span>{row.current_cases} current</span>
                         <span>→</span>
                         <span>{row.predicted_cases} predicted</span>
@@ -449,13 +456,13 @@ function PredictionSignal({ row, index, active = false, onSelect }) {
                 </div>
                 <InfoTooltip side="top-end" text="Priority score (0–100): higher means earlier clinic-head review.">
                 <div className="cursor-help text-left sm:text-right">
-                    <div className="text-2xl font-black text-cyan-100">{row.priority_score}</div>
-                    <div className="text-xs font-bold uppercase text-slate-500">Priority</div>
+                    <div className="text-2xl font-black text-white">{row.priority_score}</div>
+                    <div className="text-xs font-bold uppercase text-blue-50/50">Review score</div>
                 </div>
                 </InfoTooltip>
             </div>
             <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 transition-all duration-700" style={{ width: `${maxWidth}%` }} />
+                <div className="h-full rounded-full bg-gradient-to-r from-white via-blue-200 to-[#2446b8] transition-all duration-700" style={{ width: `${maxWidth}%` }} />
             </div>
         </button>
     );
@@ -727,7 +734,7 @@ function formatWeekRange(dateValue, fallback) {
 
 function Stat({ icon: Icon, label, value }) {
     return (
-        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-300/30">
+        <div className="rounded-2xl border border-white/15 bg-[linear-gradient(160deg,rgba(255,255,255,0.16),rgba(255,255,255,0.07))] p-5 shadow-xl shadow-blue-950/10 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-blue-100/35">
             <Icon size={18} className="text-blue-200" aria-hidden="true" />
             <div className="mt-4 text-3xl font-black">{value ?? 0}</div>
             <div className="mt-1 text-xs font-bold uppercase text-slate-500">{label}</div>
@@ -736,51 +743,169 @@ function Stat({ icon: Icon, label, value }) {
 }
 
 function Panel({ title, action, children, className = '' }) {
-    return <section className={`rounded-lg border border-white/10 bg-white/[0.04] p-5 ${className}`}><div className="mb-4 flex items-center justify-between gap-3"><h2 className="text-lg font-black">{title}</h2>{action}</div>{children}</section>;
+    return <section className={`rounded-2xl border border-white/15 bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08))] p-5 shadow-2xl shadow-blue-950/12 backdrop-blur-md ${className}`}><div className="mb-4 flex items-center justify-between gap-3"><h2 className="text-lg font-black">{title}</h2>{action}</div>{children}</section>;
 }
 
 function LineChart({ rows = [] }) {
-    const max = Math.max(...rows.map(row => Number(row.value) || 0), 1);
-    const points = rows.map((row, index) => {
-        const x = rows.length === 1 ? 50 : (index / (rows.length - 1)) * 100;
-        const y = 100 - ((Number(row.value) || 0) / max) * 82 - 8;
+    const safeRows = Array.isArray(rows) ? rows : [];
+
+    if (!safeRows.length) {
+        return <AnalyticsEmptyState title="No monthly visit records yet" message="ClinicQR will show a 6-month visit chart once clinic visit logs are recorded." />;
+    }
+
+    const values = safeRows.map(row => Number(row.value) || 0);
+    const total = values.reduce((sum, value) => sum + value, 0);
+    const latest = values[values.length - 1] ?? 0;
+    const previous = values[values.length - 2] ?? 0;
+    const max = Math.max(...values, 1);
+    const yMax = Math.max(Math.ceil(max / 10) * 10, 10);
+    const chartLeft = 10;
+    const chartRight = 94;
+    const chartWidth = chartRight - chartLeft;
+    const xForIndex = (index) => safeRows.length === 1 ? 52 : chartLeft + (index / (safeRows.length - 1)) * chartWidth;
+    const points = safeRows.map((row, index) => {
+        const x = xForIndex(index);
+        const y = 92 - ((Number(row.value) || 0) / yMax) * 72;
         return `${x},${y}`;
     }).join(' ');
+    const areaPoints = `${chartLeft},96 ${points} ${chartRight},96`;
 
     return (
         <div>
-            <svg viewBox="0 0 100 110" className="h-64 w-full overflow-visible">
-                <polyline points={points} fill="none" stroke="rgb(110 231 183)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                {rows.map((row, index) => {
-                    const x = rows.length === 1 ? 50 : (index / (rows.length - 1)) * 100;
-                    const y = 100 - ((Number(row.value) || 0) / max) * 82 - 8;
-                    return <circle key={row.month} cx={x} cy={y} r="2.8" fill="rgb(191 219 254)" />;
-                })}
-            </svg>
-            <div className="grid" style={{ gridTemplateColumns: `repeat(${Math.max(rows.length, 1)}, minmax(0, 1fr))` }}>
-                {rows.map(row => <div key={row.month} className="text-center text-xs font-bold text-slate-500">{row.label}<div className="text-white/70">{row.value}</div></div>)}
+            <div className="mb-4 grid gap-3 sm:grid-cols-3">
+                <AnalyticsMini label="Latest month" value={latest} />
+                <AnalyticsMini label="Previous month" value={previous} />
+                <AnalyticsMini label="6-month total" value={total} />
+            </div>
+
+            <div className="group/chart relative w-full cursor-help rounded-2xl border border-white/10 bg-slate-950/45 p-4 transition hover:border-blue-100/30 hover:bg-slate-950/55">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                    <div className="text-xs font-bold text-slate-400">Hover the chart to understand it quickly.</div>
+                    <div className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-100">Visit volume</div>
+                </div>
+                <div className="pointer-events-none absolute left-1/2 top-12 z-20 w-80 -translate-x-1/2 rounded-xl border border-blue-100/25 bg-slate-950 px-3 py-2 text-xs font-semibold leading-5 text-white opacity-0 shadow-2xl shadow-slate-950/70 transition duration-150 group-hover/chart:opacity-100">
+                    Left numbers = number of clinic visits. Bottom labels = months. Each dot shows that month&apos;s total visits.
+                </div>
+                <svg viewBox="0 0 100 110" className="h-80 w-full overflow-visible" role="img" aria-label="Monthly clinic visits line chart">
+                    <defs>
+                        <linearGradient id="clinicVisitsLine" x1="0" x2="1" y1="0" y2="0">
+                            <stop offset="0%" stopColor="#b9ccff" />
+                            <stop offset="52%" stopColor="#ffffff" />
+                            <stop offset="100%" stopColor="#60a5fa" />
+                        </linearGradient>
+                        <linearGradient id="clinicVisitsArea" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stopColor="#b9ccff" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#2446b8" stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    {[20, 38, 56, 74, 92].map(y => (
+                        <line key={y} x1={chartLeft} x2={chartRight} y1={y} y2={y} stroke="rgba(255,255,255,.11)" strokeWidth="0.5" />
+                    ))}
+
+                    {safeRows.map((row, index) => {
+                        const x = xForIndex(index);
+                        return <line key={`guide-${row.month ?? row.label}`} x1={x} x2={x} y1="20" y2="96" stroke="rgba(255,255,255,.055)" strokeWidth="0.45" />;
+                    })}
+
+                    {[0, 0.25, 0.5, 0.75, 1].map(tick => (
+                        <text key={tick} x="2" y={94 - tick * 72} className="fill-slate-300 text-[3.6px] font-bold">
+                            {Math.round(yMax * tick)}
+                        </text>
+                    ))}
+
+                    <text x="5" y="17" className="fill-blue-100 text-[3.5px] font-black uppercase tracking-widest">
+                        Clinic visits
+                    </text>
+
+                    <polygon points={areaPoints} fill="url(#clinicVisitsArea)" />
+                    <polyline points={points} fill="none" stroke="url(#clinicVisitsLine)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+
+                    {safeRows.map((row, index) => {
+                        const value = Number(row.value) || 0;
+                        const x = xForIndex(index);
+                        const y = 92 - (value / yMax) * 72;
+
+                        return (
+                            <g key={row.month ?? row.label}>
+                                <circle cx={x} cy={y} r="3.6" fill="#071a3d" stroke="#eef3ff" strokeWidth="1.2" />
+                                <text x={x} y={Math.max(y - 7, 8)} textAnchor="middle" className="fill-white text-[4px] font-black">{value}</text>
+                            </g>
+                        );
+                    })}
+                </svg>
+
+                <div className="relative h-8 border-t border-white/10 pt-3">
+                    {safeRows.map(row => (
+                        <div
+                            key={row.month ?? row.label}
+                            className="absolute top-3 -translate-x-1/2 text-center text-xs font-black text-slate-300"
+                            style={{ left: `${xForIndex(safeRows.indexOf(row))}%` }}
+                        >
+                            {row.label}
+                        </div>
+                    ))}
+                </div>
+                <div className="mt-1 text-center text-[10px] font-black uppercase tracking-[0.22em] text-blue-100/80">
+                    Month
+                </div>
             </div>
         </div>
     );
 }
 
-function RankedBars({ rows = [] }) {
-    const max = Math.max(...rows.map(row => Number(row.value) || 0), 1);
-    if (!rows.length) return <p className="text-sm text-slate-500">No trend data yet.</p>;
+function RankedBars({ rows = [], fallbackMonth }) {
+    const safeRows = Array.isArray(rows) ? rows.filter(row => Number(row.value) > 0) : [];
+    const max = Math.max(...safeRows.map(row => Number(row.value) || 0), 1);
+
+    if (!safeRows.length) {
+        return <AnalyticsEmptyState title="No sickness trend detected" message={`No dominant sickness category has been recorded for ${fallbackMonth ?? 'the selected month'} yet.`} />;
+    }
 
     return (
         <div className="space-y-3">
-            {rows.map((row, index) => (
-                <div key={row.label} className="rounded-lg border border-white/10 bg-slate-950/50 p-4">
+            {safeRows.slice(0, 5).map((row, index) => {
+                const percent = Math.max((Number(row.value) / max) * 100, 8);
+
+                return (
+                    <div key={row.label} className="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
                     <div className="flex items-center justify-between gap-3">
-                        <span className="truncate font-bold">{index + 1}. {row.label}</span>
-                        <span className="text-xl font-black text-emerald-200">{row.value}</span>
+                        <div className="flex min-w-0 items-center gap-3">
+                            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10 text-xs font-black text-blue-100">{index + 1}</span>
+                            <span className="truncate font-black">{row.label}</span>
+                        </div>
+                        <span className="text-2xl font-black text-blue-100">{row.value}</span>
                     </div>
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                        <div className="h-full rounded-full bg-emerald-300 transition-all duration-700" style={{ width: `${Math.max((row.value / max) * 100, 6)}%` }} />
+                    <div className="mt-3 h-3 overflow-hidden rounded-full bg-white/10">
+                        <div className="h-full rounded-full bg-gradient-to-r from-blue-100 via-blue-300 to-[#2446b8] transition-all duration-700" style={{ width: `${percent}%` }} />
                     </div>
+                    <div className="mt-2 text-xs font-semibold text-slate-400">{percent.toFixed(0)}% of top category volume</div>
                 </div>
-            ))}
+                );
+            })}
+        </div>
+    );
+}
+
+function AnalyticsMini({ label, value }) {
+    return (
+        <div className="rounded-xl border border-white/10 bg-slate-950/45 p-3">
+            <div className="text-xl font-black text-white">{value}</div>
+            <div className="mt-1 text-[10px] font-black uppercase tracking-widest text-slate-500">{label}</div>
+        </div>
+    );
+}
+
+function AnalyticsEmptyState({ title, message }) {
+    return (
+        <div className="grid min-h-72 place-items-center rounded-2xl border border-white/10 bg-slate-950/40 p-6 text-center">
+            <div>
+                <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/10 text-blue-100">
+                    <BarChart3 size={22} />
+                </div>
+                <h3 className="mt-4 text-lg font-black text-white">{title}</h3>
+                <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-400">{message}</p>
+            </div>
         </div>
     );
 }

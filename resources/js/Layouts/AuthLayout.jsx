@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { ArrowLeft, ChartLine, ClipboardList, FileText, LockKeyhole, Stethoscope } from 'lucide-react';
+import { ArrowLeft, ChartLine, ClipboardList, FileText, LockKeyhole } from 'lucide-react';
 
 export default function AuthLayout({ title, subtitle, children }) {
     const { flash } = usePage().props;
@@ -12,7 +12,9 @@ export default function AuthLayout({ title, subtitle, children }) {
             <div className="cq-auth-grid">
                 <section className="cq-login-left">
                     <Link href="/" className="mb-10 flex items-center gap-3 no-underline text-white">
-                        <span className="cq-logo-box"><Stethoscope size={19} aria-hidden="true" /></span>
+                        <span className="cq-dssc-logo-box">
+                            <img src="/images/clinic/school logo.png" alt="DSSC" />
+                        </span>
                         <span className="cq-logo-text">Clinic<em>QR</em></span>
                     </Link>
                     <h1 className="font-['Sora'] text-5xl font-black leading-none tracking-tight sm:text-6xl">

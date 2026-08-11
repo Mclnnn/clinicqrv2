@@ -3,14 +3,16 @@
 @source "../js";
 
 :root {
-    --cq-blue-950: #020617;
-    --cq-blue-900: #08245c;
-    --cq-blue-800: #041b4d;
-    --cq-blue-700: #04256a;
-    --cq-blue-600: #053a8e;
-    --cq-blue-500: #2563eb;
-    --cq-blue-300: #93c5fd;
-    --cq-blue-100: #dbeafe;
+    --cq-blue-950: #071a3d;
+    --cq-blue-900: #102f68;
+    --cq-blue-800: #173b7a;
+    --cq-blue-700: #2146a7;
+    --cq-blue-600: #2446b8;
+    --cq-blue-500: #2f55c8;
+    --cq-blue-300: #b9ccff;
+    --cq-blue-100: #eef3ff;
+    --cq-red-700: #9b0000;
+    --cq-red-600: #b00000;
     --cq-brand-950: var(--cq-blue-950);
     --cq-brand-900: var(--cq-blue-800);
     --cq-brand-800: var(--cq-blue-700);
@@ -180,20 +182,20 @@ body {
     min-height: 100vh;
     color: #fff;
     background:
-        radial-gradient(circle at 10% 0%, rgba(37,99,235,.20) 0%, transparent 42%),
-        radial-gradient(circle at 90% 90%, rgba(147,197,253,.14) 0%, transparent 34%),
+        radial-gradient(circle at 10% 0%, rgba(36,70,184,.18) 0%, transparent 42%),
+        radial-gradient(circle at 90% 90%, rgba(185,204,255,.12) 0%, transparent 34%),
         radial-gradient(circle at 60% 30%, rgba(219,234,254,.07) 0%, transparent 30%),
-        linear-gradient(160deg, #020617 0%, #041b4d 52%, #020617 100%);
+        linear-gradient(160deg, #061636 0%, #102f68 52%, #061636 100%);
     overflow-x: hidden;
 }
 
 .cq-shell.cq-user-shell {
     background:
-        linear-gradient(160deg, rgba(2,6,23,.62) 0%, rgba(4,27,77,.50) 48%, rgba(2,6,23,.68) 100%),
-        radial-gradient(circle at 10% 0%, rgba(37,99,235,.14) 0%, transparent 42%),
-        radial-gradient(circle at 90% 90%, rgba(147,197,253,.10) 0%, transparent 34%),
+        linear-gradient(160deg, rgba(7,26,61,.64) 0%, rgba(16,47,104,.52) 48%, rgba(7,26,61,.68) 100%),
+        radial-gradient(circle at 10% 0%, rgba(36,70,184,.14) 0%, transparent 42%),
+        radial-gradient(circle at 90% 90%, rgba(185,204,255,.10) 0%, transparent 34%),
         url('../../public/images/clinic/Enhanced Clinic.webp') center / cover fixed no-repeat,
-        #020617;
+        #071a3d;
 }
 
 .cq-shell::after {
@@ -212,10 +214,12 @@ body {
     position: fixed;
     inset: 0 0 auto;
     z-index: 40;
-    padding: 12px 0;
-    background: rgba(4,27,77,.78);
+    padding: 11px 0;
+    background:
+        linear-gradient(90deg, rgba(16,47,104,.94), rgba(36,70,184,.88), rgba(16,47,104,.92));
     backdrop-filter: blur(28px);
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    border-bottom: 3px solid rgba(155,0,0,.72);
+    box-shadow: 0 18px 45px rgba(7,26,61,.28);
 }
 
 .cq-topbar-row {
@@ -233,19 +237,18 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 11px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.075);
+    border: 1px solid rgba(255,255,255,.16);
     display: grid;
-    align-items: center;
-    justify-content: center;
+    place-items: center;
     color: rgba(255,255,255,.82);
     transition: background .2s, border-color .2s, color .2s, transform .2s;
 }
 
 .cq-back-btn:hover,
 .cq-ham:hover {
-    background: rgba(37,99,235,.14);
-    border-color: rgba(147,197,253,.26);
+    background: rgba(255,255,255,.14);
+    border-color: rgba(255,255,255,.34);
     color: #fff;
     transform: translateY(-1px);
 }
@@ -257,7 +260,7 @@ body {
 }
 
 .cq-quick a {
-    color: rgba(255,255,255,.62);
+    color: rgba(255,255,255,.70);
     font-size: 13.5px;
     font-weight: 600;
     padding: 8px 14px;
@@ -266,9 +269,10 @@ body {
 }
 
 .cq-quick a.active {
-    color: var(--cq-brand-300);
-    background: rgba(37,99,235,.10);
-    border: 1px solid rgba(37,99,235,.18);
+    color: #ffffff;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.20);
+    box-shadow: inset 0 -2px 0 rgba(185,204,255,.45);
 }
 
 .cq-avatar {
@@ -277,8 +281,8 @@ body {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, var(--cq-brand-500), var(--cq-brand-800));
-    border: 2px solid rgba(37,99,235,.3);
+    background: linear-gradient(135deg, #2446b8, #102f68);
+    border: 2px solid rgba(255,255,255,.24);
     font-weight: 900;
     overflow: hidden;
 }
@@ -300,24 +304,24 @@ body {
     min-height: 28px;
     border-radius: 999px;
     padding: 0 12px;
-    border: 1px solid rgba(147,197,253,.22);
-    background: rgba(37,99,235,.10);
-    color: #dbeafe;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.11);
+    color: #eef3ff;
     font-size: 13px;
     font-weight: 900;
     white-space: nowrap;
 }
 
 .cq-role-pill.admin {
-    border-color: rgba(147,197,253,.25);
-    background: rgba(59,130,246,.12);
-    color: #dbeafe;
+    border-color: rgba(255,255,255,.25);
+    background: rgba(255,255,255,.11);
+    color: #eef3ff;
 }
 
 .cq-role-pill.super {
-    border-color: rgba(147,197,253,.30);
-    background: rgba(37,99,235,.14);
-    color: #dbeafe;
+    border-color: rgba(185,204,255,.42);
+    background: rgba(255,255,255,.13);
+    color: #ffffff;
 }
 
 .cq-menu-wrap {
@@ -521,8 +525,9 @@ body {
     inset: 0 auto 0 0;
     z-index: 60;
     width: 260px;
-    background: rgba(2,6,23,.97);
-    border-right: 1px solid rgba(255,255,255,.07);
+    background:
+        linear-gradient(180deg, rgba(36,70,184,.96), rgba(16,47,104,.98));
+    border-right: 1px solid rgba(255,255,255,.14);
     backdrop-filter: blur(30px);
     transform: translateX(-100%);
     transition: transform .3s cubic-bezier(.4,0,.2,1);
@@ -602,7 +607,7 @@ body {
 
 .cq-side-link:hover {
     color: #fff;
-    background: rgba(255,255,255,.06);
+    background: rgba(255,255,255,.11);
 }
 
 .cq-side-link span {
@@ -630,9 +635,10 @@ body {
 }
 
 .cq-side-link.active {
-    background: rgba(37,99,235,.12);
-    color: var(--cq-brand-300);
-    border: 1px solid rgba(37,99,235,.20);
+    background: rgba(255,255,255,.94);
+    color: #102f68;
+    border: 1px solid rgba(255,255,255,.72);
+    box-shadow: 0 14px 32px rgba(7,26,61,.24);
 }
 
 .cq-subnav {
@@ -653,8 +659,8 @@ body {
 
 .cq-subnav-link:hover,
 .cq-subnav-link.active {
-    color: var(--cq-brand-300);
-    background: rgba(37,99,235,.08);
+    color: #ffffff;
+    background: rgba(255,255,255,.10);
 }
 
 .cq-side-user {
@@ -1193,15 +1199,17 @@ body {
 
 .cq-login {
     position: relative;
-    min-height: 100vh;
+    box-sizing: border-box;
+    height: 100dvh;
+    min-height: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: url('../../public/images/clinic/Infirmary.webp') center/cover no-repeat;
     color: #fff;
     font-family: 'DM Sans', system-ui, sans-serif;
-    padding: 96px 24px 32px;
-    overflow-x: hidden;
+    padding: 56px 24px 28px;
+    overflow: hidden;
 }
 
 .cq-login::before {
@@ -1209,8 +1217,23 @@ body {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 18% 18%, rgba(59,130,246,.22), transparent 28%),
-        linear-gradient(90deg, rgba(4,27,77,.88) 0%, rgba(4,27,77,.76) 48%, rgba(15,23,42,.88) 100%);
+        radial-gradient(circle at 10% 45%, rgba(255,255,255,.10), transparent 24%),
+        linear-gradient(90deg, rgba(30,65,175,.92) 0%, rgba(28,61,166,.82) 42%, rgba(15,39,88,.86) 74%, rgba(15,23,42,.88) 100%);
+}
+
+.cq-login::after {
+    content: '';
+    position: absolute;
+    left: -22vw;
+    top: -16vh;
+    width: 66vw;
+    height: 118vh;
+    border-radius: 0 100% 100% 0;
+    background:
+        linear-gradient(90deg, rgba(36,70,184,.52), rgba(36,70,184,.18)),
+        radial-gradient(circle at 72% 50%, rgba(255,255,255,.14), transparent 34%);
+    border-right: 20px solid rgba(255,255,255,.16);
+    pointer-events: none;
 }
 
 .cq-login-left {
@@ -1223,11 +1246,23 @@ body {
 
 .cq-login-card {
     width: min(100%, 430px);
-    padding: 34px;
+    padding: 30px 34px;
     border-radius: 28px;
-    background: linear-gradient(180deg, rgba(11,31,77,.98), rgba(16,40,95,.99));
-    border: 1px solid rgba(255,255,255,.12);
-    box-shadow: 0 28px 70px rgba(0,0,0,.35);
+    background:
+        linear-gradient(180deg, rgba(30,65,175,.90), rgba(13,43,107,.92));
+    border: 1px solid rgba(255,255,255,.20);
+    box-shadow: 0 28px 70px rgba(4,27,77,.36);
+    backdrop-filter: blur(18px);
+    position: relative;
+    overflow: hidden;
+}
+
+.cq-login-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: linear-gradient(90deg, #b00000, #ffffff, #2446b8);
 }
 
 .cq-auth-grid {
@@ -1240,14 +1275,32 @@ body {
     gap: 56px;
 }
 
+.cq-dssc-logo-box {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: rgba(255,255,255,.94);
+    border: 2px solid rgba(255,255,255,.55);
+    box-shadow: 0 16px 36px rgba(4,27,77,.22);
+}
+
+.cq-dssc-logo-box img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
 .cq-auth-feature {
     display: flex;
     align-items: center;
     gap: 12px;
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.10);
-    padding: 13px 15px;
+    background: rgba(255,255,255,.14);
+    padding: 12px 15px;
     backdrop-filter: blur(12px);
 }
 
@@ -1271,24 +1324,24 @@ body {
 }
 
 .cq-login-left .rounded-2xl {
-    background: rgba(4,27,77,.72) !important;
+    background: rgba(30,65,175,.34) !important;
     backdrop-filter: blur(14px);
 }
 
 .cq-form-field {
     width: 100%;
     padding: 14px 14px;
-    border: 1.5px solid rgba(255,255,255,.14);
+    border: 1.5px solid rgba(255,255,255,.22);
     border-radius: 14px;
-    background: rgba(255,255,255,.10);
+    background: rgba(255,255,255,.13);
     color: #fff;
     outline: none;
 }
 
 .cq-form-field:focus {
-    border-color: #bfd7ff;
-    box-shadow: 0 0 0 4px rgba(219,234,254,.14);
-    background: rgba(255,255,255,.14);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(191,215,255,.18);
+    background: rgba(255,255,255,.17);
 }
 
 /* User/student/faculty responsive layer. */
@@ -2458,6 +2511,10 @@ body {
 
     .cq-login {
         align-items: start;
+        height: auto;
+        min-height: 100dvh;
+        overflow-x: hidden;
+        overflow-y: auto;
         padding: 84px 18px 28px;
     }
 

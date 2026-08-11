@@ -40,9 +40,9 @@ export default function Login() {
                 <button
                     type="button"
                     onClick={() => router.visit('/school-portal/login')}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-4 py-3 text-center font-black text-cyan-50 transition hover:border-cyan-200/50 hover:bg-cyan-300/20"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-3 text-center font-black text-white transition hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.14]"
                 >
-                    <Building2 size={18} />
+                    <Building2 size={18} className="transition group-hover:scale-110" />
                     Continue with School Portal
                 </button>
 

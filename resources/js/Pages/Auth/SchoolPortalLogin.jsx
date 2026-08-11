@@ -21,16 +21,16 @@ export default function SchoolPortalLogin({ demoAccounts = [] }) {
     }
 
     return (
-        <AuthLayout title="School Portal Sign In" subtitle="Use your DSSC school portal identity to access ClinicQR as a student or faculty account.">
+        <AuthLayout title="School Portal Sign In" subtitle="Use your DSSC student or faculty portal account to continue to ClinicQR.">
             <Head title="School Portal Login" />
 
-            <div className="mb-5 rounded-2xl border border-cyan-300/25 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50">
-                <div className="flex items-center gap-2 font-black">
+            <div className="mb-5 rounded-2xl border border-white/15 bg-white/[0.075] p-4 text-sm leading-6 text-white/75">
+                <div className="flex items-center gap-2 font-black text-white">
                     <ShieldCheck size={17} />
-                    Temporary integration mode
+                    DSSC portal identity
                 </div>
-                <p className="mt-2 text-cyan-50/75">
-                    This uses dummy portal accounts for now. Once the school IT gives the real API, this screen can connect to the official school portal.
+                <p className="mt-2">
+                    ClinicQR will verify your school portal account, then open your linked clinic account.
                 </p>
             </div>
 
@@ -60,20 +60,23 @@ export default function SchoolPortalLogin({ demoAccounts = [] }) {
                 </div>
 
                 <button disabled={form.processing} className="cq-primary-btn w-full border-0">
-                    {form.processing ? 'Checking portal account...' : 'Continue with School Portal'}
+                    {form.processing ? 'Checking portal account...' : 'Login with School Portal'}
                 </button>
             </form>
 
             {demoAccounts.length > 0 && (
-                <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.05] p-4">
-                    <p className="text-xs font-black uppercase tracking-widest text-white/55">Demo accounts</p>
+                <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.045] p-4">
+                    <p className="text-xs font-black uppercase tracking-widest text-white/55">Development access</p>
+                    <p className="mt-1 text-xs leading-5 text-white/45">
+                        Temporary demo accounts while waiting for the official DSSC portal API.
+                    </p>
                     <div className="mt-3 grid gap-3">
                         {demoAccounts.map(account => (
                             <button
                                 key={account.login}
                                 type="button"
                                 onClick={() => useDemo(account)}
-                                className="rounded-xl border border-white/10 bg-slate-950/50 p-3 text-left transition hover:border-cyan-300/40 hover:bg-cyan-300/10"
+                                className="rounded-xl border border-white/10 bg-slate-950/35 p-3 text-left transition hover:border-white/25 hover:bg-white/10"
                             >
                                 <div className="flex items-center gap-2 text-sm font-black text-white">
                                     {account.type === 'Student' ? <GraduationCap size={16} /> : <Building2 size={16} />}
@@ -88,7 +91,7 @@ export default function SchoolPortalLogin({ demoAccounts = [] }) {
             )}
 
             <p className="mt-6 text-center text-sm text-white/55">
-                Need the normal ClinicQR login? <Link href="/login" className="font-bold text-blue-200">Go back</Link>
+                Need the normal ClinicQR login? <Link href="/login" className="font-bold text-blue-100">Go back</Link>
             </p>
         </AuthLayout>
     );
