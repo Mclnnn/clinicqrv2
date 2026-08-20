@@ -112,4 +112,16 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | SSO Allowed Domain
+    |--------------------------------------------------------------------------
+    |
+    | Define the email domain that is allowed to log in via SSO.
+    | Set this to null or empty in your .env to allow all domains.
+    |
+    */
+
+    'sso_allowed_domain' => env('SSO_ALLOWED_DOMAIN', 'dssc.edu.ph'),
+
 ];

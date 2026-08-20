@@ -37,14 +37,20 @@ export default function Login() {
                     <span className="h-px flex-1 bg-white/10" />
                 </div>
 
-                <button
-                    type="button"
-                    onClick={() => router.visit('/school-portal/login')}
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-3 text-center font-black text-white transition hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.14]"
+                <a
+                    href="/auth/student-portal/redirect"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl border border-blue-400/30 bg-blue-500/15 px-4 py-3 text-center font-black text-white transition hover:-translate-y-0.5 hover:border-blue-400/60 hover:bg-blue-500/25"
                 >
-                    <Building2 size={18} className="transition group-hover:scale-110" />
-                    Continue with School Portal
-                </button>
+                    <Building2 size={18} className="transition group-hover:scale-110 text-blue-300" />
+                    Sign in with Student Portal (SSO)
+                </a>
+
+                <div className="flex items-center justify-between text-xs text-white/55 hidden">
+                    <span>Using demo/manual connector?</span>
+                    <Link href="/school-portal/login" className="font-bold text-blue-200 hover:underline">
+                        School Portal Login
+                    </Link>
+                </div>
 
                 <p className="text-center text-sm text-white/55">
                     Wala pang account? <Link href="/register" className="font-bold text-blue-200">Create Account</Link>

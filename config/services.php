@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'student_portal' => [
+        'client_id' => env('STUDENT_PORTAL_CLIENT_ID'),
+        'client_secret' => env('STUDENT_PORTAL_CLIENT_SECRET'),
+        'redirect' => env('STUDENT_PORTAL_REDIRECT_URI', '/auth/student-portal/callback'),
+        'url' => env('STUDENT_PORTAL_URL', 'http://portal.dssc.edu.ph:5566'),
+    ],
+
 ];

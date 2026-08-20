@@ -101,57 +101,63 @@ Artisan::command('ml:export-live-clinic-logs', function () {
     return 0;
 })->purpose('Export current ClinicQR visit logs into the ML cleaned-log CSV format');
 
-function normalize_ml_text($value): string
-{
-    return trim(preg_replace('/\s+/', ' ', (string) $value));
-}
-
-function normalize_live_sex($value): string
-{
-    $text = strtoupper(normalize_ml_text($value));
-
-    return match ($text) {
-        'MALE', 'M' => 'M',
-        'FEMALE', 'F' => 'F',
-        default => '',
-    };
-}
-
-function categorize_live_clinic_text($value): string
-{
-    $text = strtoupper(normalize_ml_text($value));
-
-    if ($text === '') {
-        return 'Unknown';
+if (!function_exists('normalize_ml_text')) {
+    function normalize_ml_text($value): string
+    {
+        return trim(preg_replace('/\s+/', ' ', (string) $value));
     }
+}
 
-    $patterns = [
-        'Headache' => ['HEADACHE', 'HEAD ACHE', 'H/A', 'MIGRAINE'],
-        'Respiratory' => ['COUGH', 'COLDS', 'COLD', 'SORE THROAT', 'RUNNY NOSE', 'FLU', 'ASTHMA', 'RESPIRATORY'],
-        'Fever' => ['FEVER', 'FEBRILE', 'HIGH TEMP', 'TEMPERATURE'],
-        'Allergy' => ['ALLERGY', 'ALLERGIES', 'RASHES', 'ITCH', 'URTICARIA'],
-        'Body Pain' => ['BODY PAIN', 'BACK PAIN', 'CHEST PAIN', 'MUSCLE PAIN', 'JOINT PAIN', 'LEG PAIN', 'ARM PAIN', 'SHOULDER PAIN', 'NECK PAIN', 'PAIN'],
-        'Gastrointestinal' => ['STOMACH', 'ABDOMINAL', 'DIARRHEA', 'DIARRHOEA', 'VOMIT', 'NAUSEA', 'LBM', 'GASTRIC', 'ACIDITY'],
-        'Dysmenorrhea' => ['DYSMENORRHEA', 'DYSMENORRHOEA', 'MENSTRUAL'],
-        'Wound/Injury' => ['WOUND', 'INJURY', 'CUT', 'ABRASION', 'SPRAIN', 'BURN', 'BLEED', 'FIRST AID'],
-        'Dizziness' => ['DIZZY', 'DIZZINESS', 'VERTIGO', 'FAINT'],
-        'Dental' => ['DENTAL', 'TOOTH', 'TOOTHACHE'],
-        'Blood Pressure' => ['BLOOD PRESSURE', 'HIGH BLOOD', 'HYPERTENSION', 'BP'],
-        'Medical Certificate' => ['MEDICAL CERT', 'MED CERT', 'MED-CERT', 'CERTIFICATE'],
-        'Physical Assessment' => ['BMI', 'HEIGHT', 'WEIGHT', 'VITAL SIGN', 'H/W'],
-        'Check-up/Consultation' => ['CHECK-UP', 'CHECK UP', 'CONSULT', 'ROUTINE CHECK', 'MONITORING'],
-        'Enrollment/Requirement' => ['ENROLLMENT', 'CLEARANCE', 'REQUIREMENT', 'ROTC', 'OJT', 'TRAINING'],
-        'Supply/Medicine Issuance' => ['SUPPLY', 'ALCOHOL', 'FACE MASK', 'FACEMASK', 'GLOVES', 'VITAMINS', 'MEDICINE', 'MEDS'],
-        'Laboratory' => ['LAB', 'LABORATORY'],
-    ];
+if (!function_exists('normalize_live_sex')) {
+    function normalize_live_sex($value): string
+    {
+        $text = strtoupper(normalize_ml_text($value));
 
-    foreach ($patterns as $category => $terms) {
-        foreach ($terms as $term) {
-            if (str_contains($text, $term)) {
-                return $category;
+        return match ($text) {
+            'MALE', 'M' => 'M',
+            'FEMALE', 'F' => 'F',
+            default => '',
+        };
+    }
+}
+
+if (!function_exists('categorize_live_clinic_text')) {
+    function categorize_live_clinic_text($value): string
+    {
+        $text = strtoupper(normalize_ml_text($value));
+
+        if ($text === '') {
+            return 'Unknown';
+        }
+
+        $patterns = [
+            'Headache' => ['HEADACHE', 'HEAD ACHE', 'H/A', 'MIGRAINE'],
+            'Respiratory' => ['COUGH', 'COLDS', 'COLD', 'SORE THROAT', 'RUNNY NOSE', 'FLU', 'ASTHMA', 'RESPIRATORY'],
+            'Fever' => ['FEVER', 'FEBRILE', 'HIGH TEMP', 'TEMPERATURE'],
+            'Allergy' => ['ALLERGY', 'ALLERGIES', 'RASHES', 'ITCH', 'URTICARIA'],
+            'Body Pain' => ['BODY PAIN', 'BACK PAIN', 'CHEST PAIN', 'MUSCLE PAIN', 'JOINT PAIN', 'LEG PAIN', 'ARM PAIN', 'SHOULDER PAIN', 'NECK PAIN', 'PAIN'],
+            'Gastrointestinal' => ['STOMACH', 'ABDOMINAL', 'DIARRHEA', 'DIARRHOEA', 'VOMIT', 'NAUSEA', 'LBM', 'GASTRIC', 'ACIDITY'],
+            'Dysmenorrhea' => ['DYSMENORRHEA', 'DYSMENORRHOEA', 'MENSTRUAL'],
+            'Wound/Injury' => ['WOUND', 'INJURY', 'CUT', 'ABRASION', 'SPRAIN', 'BURN', 'BLEED', 'FIRST AID'],
+            'Dizziness' => ['DIZZY', 'DIZZINESS', 'VERTIGO', 'FAINT'],
+            'Dental' => ['DENTAL', 'TOOTH', 'TOOTHACHE'],
+            'Blood Pressure' => ['BLOOD PRESSURE', 'HIGH BLOOD', 'HYPERTENSION', 'BP'],
+            'Medical Certificate' => ['MEDICAL CERT', 'MED CERT', 'MED-CERT', 'CERTIFICATE'],
+            'Physical Assessment' => ['BMI', 'HEIGHT', 'WEIGHT', 'VITAL SIGN', 'H/W'],
+            'Check-up/Consultation' => ['CHECK-UP', 'CHECK UP', 'CONSULT', 'ROUTINE CHECK', 'MONITORING'],
+            'Enrollment/Requirement' => ['ENROLLMENT', 'CLEARANCE', 'REQUIREMENT', 'ROTC', 'OJT', 'TRAINING'],
+            'Supply/Medicine Issuance' => ['SUPPLY', 'ALCOHOL', 'FACE MASK', 'FACEMASK', 'GLOVES', 'VITAMINS', 'MEDICINE', 'MEDS'],
+            'Laboratory' => ['LAB', 'LABORATORY'],
+        ];
+
+        foreach ($patterns as $category => $terms) {
+            foreach ($terms as $term) {
+                if (str_contains($text, $term)) {
+                    return $category;
+                }
             }
         }
-    }
 
-    return 'Other';
+        return 'Other';
+    }
 }

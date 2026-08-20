@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SchoolPortalAuthController;
+use App\Http\Controllers\StudentPortalSSOController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\StudentController;
@@ -66,6 +67,11 @@ Route::middleware('guest')->group(function () {
         ->name('school-portal.login');
     Route::post('/school-portal/login', [SchoolPortalAuthController::class, 'login'])
         ->name('school-portal.login.process');
+
+    Route::get('/auth/student-portal/redirect', [StudentPortalSSOController::class, 'redirect'])
+        ->name('student-portal.redirect');
+    Route::get('/auth/student-portal/callback', [StudentPortalSSOController::class, 'callback'])
+        ->name('student-portal.callback');
 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
